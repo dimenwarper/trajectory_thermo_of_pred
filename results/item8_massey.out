@@ -1,0 +1,51 @@
+means over 60 random feedback models:
+  sumStateTE             mean=  0.1805  sd=0.0990
+  MasseyDI_StoX          mean=  0.1805  sd=0.0990
+  MasseyDI_XtoS_delay    mean=  0.1606  sd=0.1898
+  Itotal                 mean=  0.3411  sd=0.2200
+  conservation_gap       mean=  0.0000  sd=0.0000
+  sum_bTE                mean=  0.1080  sd=0.0624
+  sum_bTE_histS          mean=  0.1080  sd=0.0624
+  sum_bTE_histSX         mean=  0.1080  sd=0.0624
+  revMassey_StoX         mean=  0.2020  sd=0.1677
+  sum_Phi                mean=  0.1308  sd=0.0720
+  sum_capE               mean=  0.1456  sd=0.0783
+
+sum stateTE <= Massey DI: worst violation 3.11e-15
+Massey conservation gap (Itotal - DI_SX - DI_XS_delay): max|.| = 2.66e-15
+
+exact equalities / inequalities detected (tol 1e-10):
+  sumStateTE == MasseyDI_StoX
+  sumStateTE <= Itotal  (always, margin 6.2e-05..7.5e-01)
+  sumStateTE >= conservation_gap  (always)
+  sumStateTE >= sum_bTE  (always)
+  sumStateTE >= sum_bTE_histS  (always)
+  sumStateTE >= sum_bTE_histSX  (always)
+  MasseyDI_StoX <= Itotal  (always, margin 6.2e-05..7.5e-01)
+  MasseyDI_StoX >= conservation_gap  (always)
+  MasseyDI_StoX >= sum_bTE  (always)
+  MasseyDI_StoX >= sum_bTE_histS  (always)
+  MasseyDI_StoX >= sum_bTE_histSX  (always)
+  MasseyDI_XtoS_delay <= Itotal  (always, margin 4.0e-02..4.6e-01)
+  MasseyDI_XtoS_delay >= conservation_gap  (always)
+  Itotal >= conservation_gap  (always)
+  Itotal >= sum_bTE  (always)
+  Itotal >= sum_bTE_histS  (always)
+  Itotal >= sum_bTE_histSX  (always)
+  Itotal >= revMassey_StoX  (always)
+  conservation_gap <= sum_bTE  (always, margin 1.5e-02..2.9e-01)
+  conservation_gap <= sum_bTE_histS  (always, margin 1.5e-02..2.9e-01)
+  conservation_gap <= sum_bTE_histSX  (always, margin 1.5e-02..2.9e-01)
+  conservation_gap <= revMassey_StoX  (always, margin 1.9e-02..6.8e-01)
+  conservation_gap <= sum_Phi  (always, margin 1.6e-02..3.3e-01)
+  conservation_gap <= sum_capE  (always, margin 1.6e-02..3.7e-01)
+  sum_bTE == sum_bTE_histS
+  sum_bTE == sum_bTE_histSX
+  sum_bTE <= sum_Phi  (always, margin 3.7e-04..7.7e-02)
+  sum_bTE <= sum_capE  (always, margin 3.8e-04..2.0e-01)
+  sum_bTE_histS == sum_bTE_histSX
+  sum_bTE_histS <= sum_Phi  (always, margin 3.7e-04..7.7e-02)
+  sum_bTE_histS <= sum_capE  (always, margin 3.8e-04..2.0e-01)
+  sum_bTE_histSX <= sum_Phi  (always, margin 3.7e-04..7.7e-02)
+  sum_bTE_histSX <= sum_capE  (always, margin 3.8e-04..2.0e-01)
+  sum_Phi <= sum_capE  (always, margin 4.3e-06..1.3e-01)

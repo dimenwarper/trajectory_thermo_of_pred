@@ -1,0 +1,17 @@
+random search (8000 models, T=4, jump kernels incl. small r)...
+  min Phi_t found: 0.000020
+  max (Phi_t - bTE_t) found: 0.169918
+  Theorem-B per-step violations: 0/8000; worst full-bound slack: 0.2227
+/home/claude/ttp-repo/scripts/item3_adversarial.py:42: RuntimeWarning: invalid value encountered in sqrt
+  tB = max(l['Phi'] - (l['bTE'] + Mapr*np.sqrt(2*l['bTE'])) for l in led)
+/home/claude/ttp-repo/scripts/item3_adversarial.py:49: RuntimeWarning: invalid value encountered in sqrt
+  bndB = Scry - sum(l['bTE'] + Mapr*np.sqrt(2*l['bTE']) for l in led) - I0
+  polished min Phi_t: -0.00000000
+  polished max (Phi_t - bTE_t): 0.19586598
+  OVERSHOOT WITNESS at r=0.2924, step 0: Phi=0.49801 bTE=0.30215 Delta=0.23511 Xi=0.26290 M=52.844
+  Theorem-B cap bTE+M*sqrt(2bTE) = 41.38118
+
+Metropolis-kernel search (4000 models)...
+  min Phi_t = 0.000024, max (Phi_t - bTE_t) = 0.156691
+  polished min Phi_t (metro): 0.00000000
+  polished max overshoot (metro): 0.19669274

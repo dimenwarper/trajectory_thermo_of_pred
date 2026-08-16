@@ -1,0 +1,11 @@
+=== no-feedback: verify monotone profile + per-pair DPI ===
+random no-fb models: violations 0/30
+3-phase HMM: profile [0.7353 0.6553 0.6195 0.6134 0.6075 0.6054 0.6051 0.6051] monotone=True
+pad eta=.05 rho=1: profile [0.1857 0.0729 0.0729 0.0729 0.0729 0.0729] monotone=True
+
+=== feedback: search for rising profiles (Sum N_{k+1} > Sum N_k) ===
+max (Sum cryptic - Sum Still) over 3000 random fb models: 0.61166
+profile of argmax: [-0.2266  0.3844  0.385   0.385 ]  (max single-step rise 0.61107)
+designed fb-pad rho=0.0: profile [0.9338 1.1679 1.1719 1.1721]  cry-Still=+0.2383
+designed fb-pad rho=0.5: profile [0.8546 1.1326 1.1368 1.1369]  cry-Still=+0.2823
+designed fb-pad rho=1.0: profile [0.4602 0.9874 0.9925 0.9926]  cry-Still=+0.5324

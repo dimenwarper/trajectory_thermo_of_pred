@@ -1,0 +1,5 @@
+worst-case gaps over 60 random feedback models (T=4):
+  L1: 1.110e-15
+  L2: 2.220e-16
+  L3joint: 1.273e-15
+  L3dpi: 0.000e+00

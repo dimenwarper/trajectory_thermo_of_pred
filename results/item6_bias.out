@@ -1,0 +1,8 @@
+exact: bW=4.7003  SStill=0.7353  Scry=0.6051   (path cells=131072)
+      N        Still hat     bias |          cry hat     bias |        cryMM hat     bias
+   1000   0.7445±0.0318  +0.0091 |   0.6988±0.0384  +0.0937 |   0.6725±0.0398  +0.0674
+  10000   0.7318±0.0115  -0.0035 |   0.6137±0.0121  +0.0086 |   0.6046±0.0121  -0.0004
+ 100000   0.7348±0.0044  -0.0005 |   0.6066±0.0036  +0.0015 |   0.6053±0.0036  +0.0003
+
+Note: plug-in bound-hat can EXCEED true bound and even give false 'violations'
+of bW >= bound if bias > slack; slack here: 4.0952

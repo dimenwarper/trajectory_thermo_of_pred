@@ -1,0 +1,7 @@
+over 200 random feedback models (T=4, jump+metro kernels):
+  identity  Phi = I[S_(t+1);fut|X_(t+1)] - I_nu : worst gap 1.05e-15
+  DPI1 (I_nu <= I[S_t;fut|X_(t+1)])  worst violation 0.00e+00
+  DPI2 (I[S_t;..] <= I[S_(t+1);..])  worst violation 0.00e+00
+  Corollary E bound: min slack (W - bnd) = 0.0772  (>=0 required)
+  Theorem  B bound: min slack (W - bnd) = 0.1241
+  Corollary E tighter than Theorem B in 200/200 models
