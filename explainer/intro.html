@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Price of Remembering — an interactive explainer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F4F6F3;
+  --card:#FDFDFB;
+  --ink:#1C2B33;
+  --mute:#5A6B70;
+  --faint:#8A9AA0;
+  --rule:#D7DED8;
+  --grid:#E4E9E2;
+  --heat:#C33A1E;
+  --heat-soft:#F3D9D0;
+  --info:#14647E;
+  --info-soft:#D3E4EA;
+  --free:#3E7A4E;
+  --free-soft:#DCE9DC;
+  --gold:#8A6D1F;
+  --disp:"Fraunces",Georgia,serif;
+  --body:"Source Serif 4",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:19px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--info-soft)}
+
+/* ---------- layout ---------- */
+.col{max-width:680px;margin:0 auto;padding:0 22px}
+.wide{max-width:860px;margin:0 auto;padding:0 22px}
+section{padding:64px 0 8px}
+p{margin:0 0 1.35em}
+em{font-style:italic}
+strong{font-weight:600}
+a{color:var(--info);text-decoration-color:var(--info-soft);text-underline-offset:3px}
+sub,sup{font-size:.68em}
+
+/* ---------- typography ---------- */
+.eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--heat);font-weight:600;
+  display:flex;align-items:center;gap:12px;margin-bottom:18px;
+}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
+.eyebrow .n{color:var(--mute)}
+h1{
+  font-family:var(--disp);font-weight:560;
+  font-size:clamp(42px,7.5vw,76px);line-height:1.02;
+  letter-spacing:-.015em;
+}
+h2{
+  font-family:var(--disp);font-weight:540;
+  font-size:clamp(28px,4.4vw,40px);line-height:1.12;
+  letter-spacing:-.01em;margin:0 0 .7em;
+}
+h3{
+  font-family:var(--disp);font-weight:560;font-size:21px;margin:1.6em 0 .5em;
+}
+.lede{font-size:22px;line-height:1.55;color:var(--ink)}
+.aside{
+  font-size:16px;color:var(--mute);border-left:2px solid var(--rule);
+  padding:.15em 0 .15em 16px;margin:1.6em 0;
+}
+.aside .k{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);display:block;margin-bottom:4px}
+.mth{font-family:var(--body);font-style:italic;white-space:nowrap}
+.mth .r{font-style:normal;font-family:var(--mono);font-size:.85em}
+.term{border-bottom:2px solid var(--info-soft);font-weight:600}
+.term.hot{border-bottom-color:var(--heat-soft)}
+.term.grn{border-bottom-color:var(--free-soft)}
+
+/* ---------- hero ---------- */
+header{
+  padding:84px 0 30px;
+  background:
+    linear-gradient(var(--paper) 0%, rgba(244,246,243,0) 30%, rgba(244,246,243,0) 70%, var(--paper) 100%),
+    repeating-linear-gradient(0deg, transparent 0 27px, var(--grid) 27px 28px),
+    repeating-linear-gradient(90deg, transparent 0 27px, var(--grid) 27px 28px),
+    var(--paper);
+}
+.kicker{
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--mute);margin-bottom:26px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+}
+.kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--heat);display:inline-block}
+.hero-sub{
+  font-size:21px;line-height:1.55;color:var(--mute);max-width:600px;margin-top:26px;
+}
+.hero-src{
+  margin-top:30px;font-family:var(--mono);font-size:12.5px;line-height:1.7;color:var(--faint);
+  border-top:1px solid var(--rule);padding-top:14px;max-width:600px;
+}
+.hero-src b{color:var(--mute);font-weight:600}
+
+/* ---------- figure cards ---------- */
+figure{
+  background:var(--card);
+  border:1px solid var(--rule);
+  border-radius:6px;
+  margin:38px 0;
+  padding:26px 22px 18px;
+  position:relative;
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 23px, #EFF2ED 23px 24px);
+}
+figure.plain{background-image:none}
+figure svg{display:block;width:100%;height:auto}
+figcaption{
+  font-family:var(--mono);font-size:12.5px;line-height:1.65;color:var(--mute);
+  margin-top:16px;padding-top:12px;border-top:1px dashed var(--rule);
+}
+figcaption b{color:var(--ink);font-weight:600}
+.figtag{
+  position:absolute;top:-11px;left:18px;background:var(--ink);color:var(--card);
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;padding:3px 10px;border-radius:3px;
+}
+
+/* svg shared text styles */
+.sT{font-family:var(--mono);font-size:12px;fill:var(--mute)}
+.sT.big{font-size:13.5px;font-weight:600;fill:var(--ink)}
+.sT.hot{fill:var(--heat);font-weight:600}
+.sT.cool{fill:var(--info);font-weight:600}
+.sT.grn{fill:var(--free);font-weight:600}
+.sI{font-family:var(--body);font-style:italic;font-size:15px;fill:var(--ink)}
+
+/* ---------- ledger cards (signature) ---------- */
+.ledger{
+  background:var(--card);
+  border:1px solid var(--rule);
+  border-radius:6px;
+  margin:38px 0;
+  font-family:var(--mono);
+  overflow:hidden;
+  box-shadow:0 1px 0 rgba(28,43,51,.04);
+}
+.ledger .lhead{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 18px;border-bottom:2px solid var(--ink);
+  font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);
+}
+.ledger .lhead b{color:var(--ink)}
+.lrow{
+  display:grid;grid-template-columns:1fr auto;gap:14px;align-items:baseline;
+  padding:13px 18px;border-bottom:1px solid var(--grid);
+  font-size:14px;position:relative;
+}
+.lrow::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px}
+.lrow.debit::before{background:var(--heat)}
+.lrow.credit::before{background:var(--info)}
+.lrow.zero::before{background:var(--faint)}
+.lrow .desc{color:var(--ink)}
+.lrow .desc small{display:block;color:var(--faint);font-size:12px;margin-top:2px;font-family:var(--mono)}
+.lrow .amt{font-weight:600;white-space:nowrap}
+.lrow.debit .amt{color:var(--heat)}
+.lrow.credit .amt{color:var(--info)}
+.lrow.zero .amt{color:var(--faint)}
+.lrow.total{border-top:2px solid var(--ink);border-bottom:none;background:#F6F7F3}
+.lrow.total .desc,.lrow.total .amt{font-weight:600;color:var(--ink);font-size:14.5px}
+
+/* ---------- interactive widgets ---------- */
+.widget{
+  background:var(--card);border:1px solid var(--rule);border-radius:6px;
+  margin:38px 0;padding:22px 22px 18px;position:relative;
+}
+.wtitle{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin-bottom:14px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.chip{
+  font-family:var(--mono);font-size:12.5px;padding:6px 13px;border-radius:99px;
+  border:1px solid var(--rule);background:var(--card);color:var(--mute);cursor:pointer;
+  transition:all .15s;
+}
+.chip:hover{border-color:var(--mute)}
+.chip.on{background:var(--ink);border-color:var(--ink);color:var(--card)}
+.sliderRow{display:flex;align-items:center;gap:14px;margin:14px 0 4px;flex-wrap:wrap}
+.sliderRow label{font-family:var(--mono);font-size:12.5px;color:var(--mute);white-space:nowrap}
+input[type=range]{
+  flex:1;min-width:160px;appearance:none;-webkit-appearance:none;height:4px;border-radius:2px;
+  background:var(--rule);outline:none;cursor:pointer;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:20px;height:20px;border-radius:50%;
+  background:var(--ink);border:3px solid var(--card);box-shadow:0 0 0 1.5px var(--ink);
+}
+input[type=range]::-moz-range-thumb{
+  width:14px;height:14px;border-radius:50%;background:var(--ink);border:3px solid var(--card);box-shadow:0 0 0 1.5px var(--ink);
+}
+.readout{
+  font-family:var(--mono);font-size:13px;line-height:1.7;color:var(--mute);
+  background:#F4F6F1;border:1px dashed var(--rule);border-radius:5px;
+  padding:10px 14px;margin-top:14px;min-height:46px;
+}
+.readout b{color:var(--ink)}
+.readout .hot{color:var(--heat);font-weight:600}
+.readout .cool{color:var(--info);font-weight:600}
+.readout .grn{color:var(--free);font-weight:600}
+
+/* pull quote */
+.pull{
+  font-family:var(--disp);font-size:clamp(23px,3.4vw,30px);line-height:1.32;font-weight:520;
+  margin:52px 0;padding:0 0 0 24px;border-left:3px solid var(--heat);
+  letter-spacing:-.005em;
+}
+.pull i{font-style:italic}
+
+/* divider */
+.divider{display:flex;justify-content:center;gap:14px;padding:34px 0 0;color:var(--faint);font-family:var(--mono);font-size:13px}
+
+footer{
+  margin-top:80px;padding:44px 0 70px;border-top:1px solid var(--rule);
+  color:var(--mute);font-size:15.5px;
+}
+footer .fin{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-top:20px}
+
+@media (max-width:640px){
+  body{font-size:17.5px}
+  .lede{font-size:19.5px}
+  section{padding:48px 0 4px}
+  figure,.widget,.ledger{margin:28px -6px;padding-left:14px;padding-right:14px}
+  .lrow{grid-template-columns:1fr;gap:2px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .heatwave{animation:drift 3.2s ease-in-out infinite}
+  @keyframes drift{0%,100%{transform:translateY(0);opacity:.9}50%{transform:translateY(-5px);opacity:.5}}
+  .rollball{animation:roll 5s ease-in-out infinite}
+  @keyframes roll{0%,18%{transform:translate(0,0)}45%,75%{transform:translate(58px,26px)}100%{transform:translate(0,0)}}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<header>
+  <div class="col">
+    <div class="kicker"><span class="dot"></span> An interactive explainer · thermodynamics of prediction</div>
+    <h1>The Price of<br>Remembering</h1>
+    <p class="hero-sub">Every thing that reacts to the world keeps a record of it — and physics charges rent for records, paid in heat. A layman's walk through our 2026 paper, where we work out <em>exactly</em> which memories cost, which are free, and the loophole that lets you bill the world instead.</p>
+    <div class="hero-src"><b>Companion to our paper:</b> "A Trajectory-Level Identity for the Thermodynamics of Prediction, With and Without Back-Action" (2026). This page simplifies aggressively; every number in the interactive figures comes from our machine-verified tables.</div>
+  </div>
+</header>
+
+<section>
+  <div class="col">
+    <div class="eyebrow"><span class="n">Entry 01</span> The setup</div>
+    <h2>A world that pushes, a system that settles</h2>
+    <p class="lede">A thermostat tracks the temperature. A bacterium tracks the sugar gradient it swims through. Your neurons track the sentence you're reading. None of them chose to become records of their surroundings — it happens automatically, because anything a changing world pushes on ends up statistically correlated with the pushing.</p>
+    <p>Statistical physics has a striking thing to say about this: <strong>those correlations have an energy bill.</strong> To see where the bill comes from, we use the simplest possible cartoon of "a thing driven by a world," borrowed from a famous 2012 result. Time ticks in steps. At each tick, two things happen:</p>
+    <figure>
+  <span class="figtag">FIG 1</span>
+  <svg viewBox="0 0 760 300" role="img" aria-label="Two-stroke cycle: quench then relaxation">
+        <!-- panel 1: quench -->
+        <text x="30" y="30" class="sT big">STROKE 1 · THE QUENCH</text>
+        <text x="30" y="48" class="sT">the world moves; the landscape tilts under you</text>
+        <!-- old landscape (ghost) -->
+        <path d="M40 200 Q 90 130 140 195 Q 190 255 240 165 Q 280 100 320 150" fill="none" stroke="var(--faint)" stroke-width="2" stroke-dasharray="5 5"/>
+        <!-- new landscape -->
+        <path d="M40 230 Q 90 235 140 160 Q 190 95 240 190 Q 280 258 320 210" fill="none" stroke="var(--ink)" stroke-width="2.5"/>
+        <!-- ball stays put during quench -->
+        <circle cx="140" cy="185" r="11" fill="var(--info)"/>
+        <text x="140" y="162" class="sT cool" text-anchor="middle">the system</text>
+        <text x="255" y="88" class="sT">old world x<tspan baseline-shift="sub" font-size="9">t</tspan></text>
+        <text x="196" y="278" class="sT big">new world x<tspan baseline-shift="sub" font-size="9">t+1</tspan></text>
+        <!-- work arrow -->
+        <g class="heatwave">
+          <path d="M95 105 L 122 148" stroke="var(--heat)" stroke-width="2.5" fill="none" marker-end="url(#arrH)"/>
+        </g>
+        <text x="46" y="96" class="sT hot">work W pushed in</text>
+
+        <!-- arrow between panels -->
+        <path d="M352 160 L 392 160" stroke="var(--mute)" stroke-width="2" fill="none" marker-end="url(#arrM)"/>
+
+        <!-- panel 2: relax -->
+        <text x="420" y="30" class="sT big">STROKE 2 · THE RELAXATION</text>
+        <text x="420" y="48" class="sT">you roll partway downhill, shedding heat</text>
+        <path d="M430 230 Q 480 235 530 160 Q 580 95 630 190 Q 670 258 710 210" fill="none" stroke="var(--ink)" stroke-width="2.5"/>
+        <!-- ball rolling -->
+        <g class="rollball"><circle cx="530" cy="150" r="11" fill="var(--info)"/></g>
+        <path d="M545 155 Q 575 175 600 178" fill="none" stroke="var(--info)" stroke-width="1.6" stroke-dasharray="3 4" marker-end="url(#arrC)"/>
+        <!-- heat out -->
+        <g class="heatwave">
+          <path d="M600 218 q 8 -10 0 -20 q -8 -10 0 -20" fill="none" stroke="var(--heat)" stroke-width="2.2"/>
+          <path d="M618 222 q 8 -10 0 -20 q -8 -10 0 -20" fill="none" stroke="var(--heat)" stroke-width="2.2"/>
+        </g>
+        <text x="590" y="252" class="sT hot">heat leaks out</text>
+        <defs>
+          <marker id="arrH" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L8 4.5 L0 9 z" fill="var(--heat)"/></marker>
+          <marker id="arrM" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L8 4.5 L0 9 z" fill="var(--mute)"/></marker>
+          <marker id="arrC" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L8 4.5 L0 9 z" fill="var(--info)"/></marker>
+        </defs>
+      </svg>
+  <figcaption><b>The two-stroke heartbeat.</b> Each time step: (1) the environment signal jumps, which instantly reshapes the system's energy landscape — that shove does <span style="color:var(--heat);font-weight:600">work</span> on the system; (2) the system relaxes one step toward the new valley, dumping <span style="color:var(--heat);font-weight:600">heat</span> into its surroundings. The environment can be anything: rhythmic, random, long-memoried — later, even something that listens back.</figcaption>
+</figure>
+    <p>Some of the work pushed in is legitimately stored (the system ends up higher on the ladder of useful free energy). The rest is <span class="term hot">dissipated work</span> — energy that came in as an orderly shove and left as disorderly heat. Wasted. The whole game of this subject is:</p>
+    <div class="pull">How little heat can a system that lives in a changing world <i>possibly</i> waste — and what does the answer have to do with what it remembers?</div>
+  </div>
+</section>
+
+<section>
+  <div class="col">
+    <div class="eyebrow"><span class="n">Entry 02</span> The 2012 rule</div>
+    <h2>Useless memory costs heat</h2>
+    <p>In 2012, Still, Sivak, Bell and Crooks proved something lovely. Because the system is physically pushed around by the signal, its internal state <span class="mth">S</span> inevitably carries information about the signal. Split that information in two:</p>
+    <p style="margin-bottom:.6em"><strong style="color:var(--free)">The predictive part</strong> — bits about the current signal that are still useful for anticipating the <em>next</em> one.</p>
+<p><strong style="color:var(--heat)">The nostalgic part</strong> — bits about the current signal that will be useless one tick from now. Memory for memory's sake.</p>
+    <figure>
+  <span class="figtag">FIG 2</span>
+  <svg viewBox="0 0 760 260" role="img" aria-label="Nostalgia: memory of now minus usefulness for next step">
+        <!-- bar 1 -->
+        <rect x="110" y="60" width="70" height="150" fill="var(--info-soft)" stroke="var(--info)" stroke-width="2"/>
+        <rect x="110" y="60" width="70" height="52" fill="var(--heat-soft)" stroke="var(--heat)" stroke-width="2"/>
+        <text x="145" y="235" class="sT" text-anchor="middle">memory of</text>
+        <text x="145" y="251" class="sT" text-anchor="middle">the world NOW</text>
+        <text x="145" y="42" class="sI" text-anchor="middle">I[S ; x<tspan baseline-shift="sub" font-size="10">t</tspan>]</text>
+        <!-- bar 2 -->
+        <rect x="300" y="112" width="70" height="98" fill="var(--free-soft)" stroke="var(--free)" stroke-width="2"/>
+        <text x="335" y="235" class="sT" text-anchor="middle">still useful for</text>
+        <text x="335" y="251" class="sT" text-anchor="middle">the world NEXT</text>
+        <text x="335" y="96" class="sI" text-anchor="middle">I[S ; x<tspan baseline-shift="sub" font-size="10">t+1</tspan>]</text>
+        <!-- bracket -->
+        <path d="M192 60 L 204 60 L 204 112 L 192 112" fill="none" stroke="var(--heat)" stroke-width="2"/>
+        <text x="216" y="80" class="sT hot">the overhang:</text>
+        <text x="216" y="96" class="sT hot">"nostalgia"</text>
+        <!-- inequality -->
+        <text x="470" y="118" class="sT big">2012 law:</text>
+        <text x="470" y="146" class="sI" font-size="17">heat wasted ≥ nostalgia,</text>
+        <text x="470" y="172" class="sT">every single step.</text>
+        <text x="470" y="200" class="sT">Retaining a bit that won't help you</text>
+        <text x="470" y="216" class="sT">predict costs at least one bit's worth</text>
+        <text x="470" y="232" class="sT">of dissipated energy.</text>
+      </svg>
+  <figcaption><b>Nostalgia = memory − predictive power.</b> The 2012 bound: dissipated work per step is at least <span class="mth">k<tspan style="font-size:.8em">B</tspan>T</span> × nostalgia. Clinging to the past, if the past won't help you with the future, is physically expensive. A perfect predictor — remembering only what forecasts — can in principle run cool.</figcaption>
+</figure>
+    <p>That result launched a small field. But it also left two itches that we set out to scratch. <strong>First:</strong> "useful for the next tick" is a strangely short horizon — what about signals whose patterns only make sense over long stretches? <strong>Second, and more embarrassing:</strong> when you actually compute the bound, it typically explains only a small sliver of the heat a real system wastes. Where's the rest?</p>
+  </div>
+</section>
+
+<section>
+  <div class="col">
+    <div class="eyebrow"><span class="n">Entry 03</span> The exact identity</div>
+    <h2>Only secrets cost</h2>
+    <p class="lede">Our first move is to stop asking "is this memory useful to <em>me</em>?" and start asking "will the <em>world itself</em> ever repeat it?"</p>
+    <p>Here is the reframe. Look at everything the system's state knows about the present signal. Some of that information will be broadcast again anyway — the future of the signal will reveal it, whether or not the system bothered to remember. And some of it is <em>gone</em>: the signal's entire future, watched to the end of time, would never disclose it again. We call that second kind <span class="term hot">cryptic information</span> — what the state stores about the present that the future never tells.</p>
+    <figure>
+  <span class="figtag">FIG 3</span>
+  <svg viewBox="0 0 760 300" role="img" aria-label="Cryptic information: what the state knows about now that the future never reveals">
+        <!-- timeline -->
+        <line x1="60" y1="80" x2="700" y2="80" stroke="var(--ink)" stroke-width="2"/>
+        <g font-family="IBM Plex Mono">
+          <circle cx="120" cy="80" r="6" fill="var(--faint)"/>
+          <circle cx="220" cy="80" r="8" fill="var(--ink)"/>
+          <circle cx="330" cy="80" r="6" fill="var(--faint)"/>
+          <circle cx="430" cy="80" r="6" fill="var(--faint)"/>
+          <circle cx="530" cy="80" r="6" fill="var(--faint)"/>
+          <circle cx="630" cy="80" r="6" fill="var(--faint)"/>
+        </g>
+        <text x="120" y="60" class="sT" text-anchor="middle">past</text>
+        <text x="220" y="56" class="sT big" text-anchor="middle">x<tspan baseline-shift="sub" font-size="10">t</tspan> (now)</text>
+        <text x="480" y="46" class="sT" text-anchor="middle">the signal's entire future  x<tspan baseline-shift="sub" font-size="9">t+1</tspan> … x<tspan baseline-shift="sub" font-size="9">T</tspan></text>
+        <path d="M320 62 L 320 54 L 645 54 L 645 62" fill="none" stroke="var(--mute)" stroke-width="1.5"/>
+        <!-- state box -->
+        <rect x="176" y="150" width="88" height="46" rx="6" fill="var(--info-soft)" stroke="var(--info)" stroke-width="2"/>
+        <text x="220" y="178" class="sT cool" text-anchor="middle">state S<tspan baseline-shift="sub" font-size="9">t</tspan></text>
+        <path d="M220 148 L 220 92" stroke="var(--info)" stroke-width="2" marker-end="url(#arrC2)"/>
+        <!-- info split -->
+        <rect x="120" y="228" width="330" height="34" fill="var(--free-soft)" stroke="var(--free)" stroke-width="1.5"/>
+        <rect x="450" y="228" width="140" height="34" fill="var(--heat-soft)" stroke="var(--heat)" stroke-width="1.5"/>
+        <text x="285" y="250" class="sT grn" text-anchor="middle">future re-broadcasts this → FREE</text>
+        <text x="520" y="243" class="sT hot" text-anchor="middle">never disclosed</text>
+        <text x="520" y="257" class="sT hot" text-anchor="middle">again → CRYPTIC</text>
+        <text x="120" y="220" class="sT">what S<tspan baseline-shift="sub" font-size="9">t</tspan> knows about x<tspan baseline-shift="sub" font-size="9">t</tspan>, split two ways:</text>
+        <path d="M264 173 Q 360 200 340 226" fill="none" stroke="var(--mute)" stroke-width="1.3" stroke-dasharray="3 4"/>
+        <defs><marker id="arrC2" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L8 4.5 L0 9 z" fill="var(--info)"/></marker></defs>
+      </svg>
+  <figcaption><b>The green part is thermodynamically free</b> — whether or not the system ever "uses" it — because the world's own future is a backup copy. Only the <b>red, cryptic part</b> shows up on the heat bill. In symbols: cryptic information is <span class="mth">I[S<tspan style="font-size:.75em">t</tspan> ; x<tspan style="font-size:.75em">t</tspan> | future]</span>, the state's knowledge of now <em>given</em> the whole future.</figcaption>
+</figure>
+    <p>And now the punchline — not an inequality but an <em>equality</em>, our Theorem 1, valid for any environment whatsoever, even one the system talks back to:</p>
+    <div class="ledger">
+  <div class="lhead"><b>Ledger · Theorem 1</b><span>exact, always</span></div>
+  <div class="lrow debit"><span class="desc">Cryptic information, summed over all steps<small>secrets the future never repeats</small></span><span class="amt">DEBIT</span></div>
+  <div class="lrow debit"><span class="desc">A "residual" of leftover terms<small>this is where the rest of the story hides</small></span><span class="amt">DEBIT / CREDIT</span></div>
+  <div class="lrow total"><span class="desc">= Total dissipated work (in units of k<sub>B</sub>T)</span><span class="amt">EXACT</span></div>
+</div>
+    <p>When the environment doesn't listen back, the residual is provably ≥ 0, so you get a clean law: <strong>dissipation ≥ total cryptic information.</strong> The heat bill only ever charges you for secrets. Everything we do from here on is, quite literally, an audit of that residual line.</p>
+    <div class="aside"><span class="k">Why this generalizes 2012</span>If the signal happens to be memoryless-simple (Markov), "what the future reveals" collapses to "what the next symbol reveals," and this new law reduces exactly to the 2012 nostalgia bound. The new statement is what nostalgia <em>wanted</em> to be for worlds with long, tangled memories.</div>
+  </div>
+</section>
+
+<section>
+  <div class="col">
+    <div class="eyebrow"><span class="n">Entry 04</span> A family of laws</div>
+    <h2>How far into the future should you peek?</h2>
+    <p>Between "compare against the next tick" (2012) and "compare against the entire future" (cryptic) sits a whole family: judge the system's memory against a sliding <strong>window of the next <span class="mth">k</span> symbols</strong>. Every window width gives a valid heat bound. So which is best? Bigger windows are more forgiving — surely their bounds are tighter?</p>
+    <p><strong>No — and we prove it's the opposite.</strong> Summed over a whole trajectory, the bounds only get <em>weaker</em> as the window grows. The humble one-step 2012 bound is the tightest member of the entire family, always, for any world that doesn't listen back. The value of the family isn't a better number. It's the <em>shape</em> of the curve, which turns out to be a diagnostic instrument. Try it:</p>
+    <div class="widget">
+      <div class="wtitle">Interactive · the window profile (real numbers from our Table 1, T = 8)</div>
+      <div class="chips" id="envChips">
+        <button class="chip on" data-env="hmm">Hidden-pattern world</button>
+        <button class="chip" data-env="echo">Echo world (repeats itself, lag 3)</button>
+        <button class="chip" data-env="fb">A world that listens back</button>
+      </div>
+      <div id="winChart"></div>
+      <div class="sliderRow">
+        <label>window width k</label>
+        <input type="range" id="winK" min="1" max="8" step="1" value="1">
+        <label id="winKval" style="min-width:44px;color:var(--ink);font-weight:600">k = 1</label>
+      </div>
+      <div class="readout" id="winRead"></div>
+    </div>
+    <p>Read the shapes like a doctor reads an EKG:</p>
+    <p><strong>The cliff tells you the world's memory span.</strong> The echo world repeats each symbol three ticks later; its profile plummets exactly at width 3 — the moment the window becomes long enough to catch the repeat, most of the "secret" stops being secret. Flatness onset reads off the world's memory order.</p>
+    <p><strong>A rising profile should be impossible.</strong> The monotone theorem says summed profiles can only fall — <em>if the world is autonomous</em>. So if you ever measure a rising one, you've caught the environment red-handed: it is reacting to the system. <strong>A feedback detector made of pure statistics</strong>, no thermometer required. (Hold that thought for Entry 07.)</p>
+  </div>
+</section>
+
+<section>
+  <div class="col">
+    <div class="eyebrow"><span class="n">Entry 05</span> The missing heat</div>
+    <h2>Where's the other seventy percent?</h2>
+    <p class="lede">Here's the embarrassment mentioned earlier, now with numbers: across every regime we test, information bounds — old or new — account for only <strong>4–30%</strong> of the heat actually wasted. For a "law of physics," that's a lot of unexplained bill.</p>
+    <p>Our answer reframes the whole complaint. The missing heat has nothing to do with the signal or the memory. It's a property of <strong>the hardware</strong>: how completely the system relaxes each step. A system that only slumps partway down each new valley leaves stored stress that dissipates later, and no amount of informational cleverness prices it — but <em>one single number</em> does. Each thermal bath gets a coefficient (the <em>Dobrushin coefficient</em> — roughly, "what fraction of the way to equilibrium does one step take you?"), and adding that one hardware constant to the ledger recovers <strong>74–100%</strong> of the bill.</p>
+    <div class="widget">
+      <div class="wtitle">Interactive · closing the gap with one hardware number (our Table 2)</div>
+      <div class="sliderRow">
+        <label>relaxation per step r</label>
+        <input type="range" id="hybR" min="0" max="100" step="1" value="55">
+        <label id="hybRval" style="min-width:70px;color:var(--ink);font-weight:600">r = 0.69</label>
+      </div>
+      <div id="hybChart"></div>
+      <div class="readout" id="hybRead"></div>
+    </div>
+    <p>Notice the moral inversion. The standard critique was "information bounds are loose, hence weak." Our version: information terms were never <em>supposed</em> to price the kinetic cost — the missing dissipation belongs to the machine, not the message, and a single kernel constant settles it. At complete relaxation (<span class="mth">r = 1</span>), the hybrid bound isn't a bound at all: it's <em>exact</em>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="col">
+    <div class="eyebrow"><span class="n">Entry 06</span> A field test</div>
+    <h2>A heat meter for chaos</h2>
+    <p>Does the window profile actually measure anything real? We point the instrument at the hardest kind of world: <strong>deterministic chaos, watched through a blurry lens.</strong> Imagine a chaotic map (the "skew tent map" — stretch the interval, fold it back) that you observe with only finite precision, say the first few binary digits. Then compute the window profile <em>exactly</em>, no sampling.</p>
+    <p>Three clean signatures fall out:</p>
+    <div class="widget">
+      <div class="wtitle">Interactive · chaos under a blurry lens (skew tent map, exact computation)</div>
+      <div class="chips" id="chaosChips">
+        <button class="chip" data-p="6">coarse memory (6 bits)</button>
+        <button class="chip on" data-p="10">medium (10 bits)</button>
+        <button class="chip" data-p="14">fine (14 bits)</button>
+      </div>
+      <div id="chaosChart"></div>
+      <div class="readout" id="chaosRead"></div>
+    </div>
+    <p><strong>1 · The profile rises here</strong> — a sigmoid, the mirror image of the echo world's cliff. For short windows, chaos hasn't yet amplified microscopic differences past your lens's resolution, so nothing looks secret. <strong>2 · The knee sits exactly where chaos eats your decimal places:</strong> at window width <span class="mth">k* ≈ ln(1/precision) / λ</span>, where <span class="mth">λ</span> is the Lyapunov exponent — the map's stretching rate. Sharper memory pushes the knee right, by precisely the predicted amount. <strong>3 · The plateau equals the map's information-destruction rate</strong> (its "folding entropy" — for these maps, exactly <span class="mth">λ</span>). Our computed value: 0.5622 nats against a true 0.5623.</p>
+    <div class="pull">A calorimeter, plus this bookkeeping, becomes a <i>chaos meter</i>: the heat ledger reads out how fast the world is destroying information.</div>
+    <div class="aside"><span class="k">A subtle correction to folklore</span>You might expect that for <em>reversible</em> chaos (like the baker's map, which folds but never truly destroys), long enough windows would drive the profile to zero — the future should eventually reveal everything. We show this fails: future observations resolve the <em>stretching</em> direction of chaos but carry exponentially fading news about the <em>squeezing</em> direction. Watching only forward in time, some of the past stays cryptic forever. Closing the gap would need windows that look both ways — an open problem we leave flagged.</div>
+  </div>
+</section>
+
+<section>
+  <div class="col">
+    <div class="eyebrow"><span class="n">Entry 07</span> The loophole</div>
+    <h2>Write it into the world</h2>
+    <p class="lede">Everything so far assumed the world ignores you. But real agents — ants, engineers, language models with scratchpads — <em>act</em>. And the moment the environment starts responding to the system, a remarkable loophole opens in the heat bill.</p>
+    <p>An ant doesn't remember the route to food. It lays pheromone — it <strong>writes its memory into the world</strong>, and later reads it back off the trail. You do the same with sticky notes, filenames, and the arrangement of objects on your desk. Biologists call it <em>stigmergy</em>. We prove this trick has an exact thermodynamic value.</p>
+    <figure>
+  <span class="figtag">FIG 4</span>
+  <svg viewBox="0 0 760 290" role="img" aria-label="Two ways to pay for memory: dissipate it, or export it to the world">
+        <text x="190" y="34" class="sT big" text-anchor="middle">OPTION A · HOLD THE SECRET</text>
+        <rect x="120" y="60" width="140" height="60" rx="8" fill="var(--info-soft)" stroke="var(--info)" stroke-width="2"/>
+        <text x="190" y="86" class="sT cool" text-anchor="middle">internal state</text>
+        <text x="190" y="103" class="sT cool" text-anchor="middle">keeps the bit</text>
+        <g class="heatwave">
+          <path d="M170 165 q 8 -10 0 -20 q -8 -9 0 -18" fill="none" stroke="var(--heat)" stroke-width="2.2"/>
+          <path d="M192 170 q 8 -10 0 -20 q -8 -9 0 -18" fill="none" stroke="var(--heat)" stroke-width="2.2"/>
+          <path d="M214 165 q 8 -10 0 -20 q -8 -9 0 -18" fill="none" stroke="var(--heat)" stroke-width="2.2"/>
+        </g>
+        <text x="190" y="196" class="sT hot" text-anchor="middle">pays in heat</text>
+        <text x="190" y="214" class="sT" text-anchor="middle">(the cryptic charge)</text>
+
+        <line x1="380" y1="52" x2="380" y2="230" stroke="var(--rule)" stroke-width="1.5" stroke-dasharray="4 5"/>
+
+        <text x="570" y="34" class="sT big" text-anchor="middle">OPTION B · EXPORT IT</text>
+        <rect x="440" y="60" width="120" height="52" rx="8" fill="var(--info-soft)" stroke="var(--info)" stroke-width="2"/>
+        <text x="500" y="82" class="sT cool" text-anchor="middle">agent stamps</text>
+        <text x="500" y="98" class="sT cool" text-anchor="middle">the bit outward</text>
+        <path d="M562 86 L 608 86" stroke="var(--info)" stroke-width="2.2" marker-end="url(#arrC3)"/>
+        <!-- world timeline -->
+        <line x1="440" y1="170" x2="720" y2="170" stroke="var(--ink)" stroke-width="2"/>
+        <circle cx="480" cy="170" r="5.5" fill="var(--faint)"/>
+        <circle cx="540" cy="170" r="5.5" fill="var(--faint)"/>
+        <circle cx="612" cy="170" r="8" fill="var(--free)"/>
+        <circle cx="672" cy="170" r="5.5" fill="var(--faint)"/>
+        <text x="612" y="150" class="sT grn" text-anchor="middle">the world's future</text>
+        <text x="612" y="136" class="sT grn" text-anchor="middle">now carries the bit</text>
+        <path d="M612 128 L 612 96 L 566 92" fill="none" stroke="var(--free)" stroke-width="1.4" stroke-dasharray="3 4"/>
+        <text x="580" y="206" class="sT" text-anchor="middle">pheromone · sticky note · cache flushed to disk</text>
+        <text x="580" y="228" class="sT grn" text-anchor="middle">earns a CREDIT: the "oracular" discount</text>
+        <defs><marker id="arrC3" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L8 4.5 L0 9 z" fill="var(--info)"/></marker></defs>
+      </svg>
+  <figcaption><b>Stigmergy, priced.</b> The discount's exact currency is <b>oracular information</b>: what the agent's state tells about the world's <em>future</em> beyond what the current observation already shows. A purely passive observer has zero of it (its state is just a digest of the past). An agent that stamps its memory into the world has plenty — and each nat of it is worth one nat off the cryptic charge.</figcaption>
+</figure>
+    <p>With feedback switched on, the residual acquires a per-step penalty, and we prove two crucial things about it: the penalty <strong>never flips sign</strong> (verified against 12,000 adversarially optimized models trying to break it — minimum found: exactly zero), and it is <em>exactly</em> the oracular information minus a harmless defect. Dropping the defect gives our headline inequality, valid at any relaxation speed:</p>
+    <div class="ledger">
+  <div class="lhead"><b>Ledger · the master account</b><span>Corollary 6</span></div>
+  <div class="lrow debit"><span class="desc">Hidden (cryptic) state information<small>secrets held internally, summed over time</small></span><span class="amt">+ DEBIT</span></div>
+  <div class="lrow credit"><span class="desc">Oracular state information<small>memory the world's future re-exposes for you</small></span><span class="amt">− CREDIT</span></div>
+  <div class="lrow credit"><span class="desc">Initial coding cost<small>what the starting state already encoded</small></span><span class="amt">− CREDIT</span></div>
+  <div class="lrow total"><span class="desc">≤ Dissipated work</span><span class="amt">THE LAW</span></div>
+</div>
+    <div class="pull">An agent pays for memory by dissipating it — <i>or by writing it into the world's future.</i></div>
+    <p>And when the credits exceed the debits, the bound goes <em>negative</em>: the system can extract net work, running on the order it previously stamped into its surroundings. Our tables realize this regime explicitly. Watch it happen:</p>
+    <div class="widget">
+      <div class="wtitle">Interactive · turning the environment into a battery (our Table 6, r = 0.5)</div>
+      <div class="sliderRow">
+        <label>how strongly the world listens, g</label>
+        <input type="range" id="fbG" min="0" max="95" step="1" value="0">
+        <label id="fbGval" style="min-width:70px;color:var(--ink);font-weight:600">g = 0.00</label>
+      </div>
+      <div id="fbChart"></div>
+      <div class="readout" id="fbRead"></div>
+    </div>
+    <div class="aside"><span class="k">A trap we defuse</span>A tempting shortcut — swap the exact penalty for a familiar quantity called backward transfer entropy — turns out to produce an <em>invalid</em> "law" whenever relaxation is incomplete. We exhibit explicit counterexamples where the fake bound exceeds the true dissipation, then show the correct oracular version quietly becomes the shortcut in the complete-relaxation limit. The moral: in this subject, plausible substitutions need proofs.</div>
+  </div>
+</section>
+
+<section>
+  <div class="col">
+    <div class="eyebrow"><span class="n">Entry 08</span> The mirror</div>
+    <h2>One ledger, two readings</h2>
+    <p>There has long been a <em>second</em> tradition of information thermodynamics, descending from Maxwell's demon: information as a <strong>resource</strong>, where a feedback controller uses what it knows to extract work. It has its own second law, written in a quantity called <em>directed information</em>. Two literatures, two laws — prediction costs versus feedback profits.</p>
+    <p>Our final structural result: <strong>they are the same identity.</strong> Theorem 1's equation contains a free choice — condition the bookkeeping on the signal's <em>future</em>, or on its <em>past</em>. Future-facing gives "prediction pays" (the cryptic law). Past-facing gives "action pays back" — and reduces, exactly, to the classic directed-information second law. The two split a single conserved total of information between system and world.</p>
+    <figure class="plain">
+  <span class="figtag">FIG 5</span>
+  <svg viewBox="0 0 760 250" role="img" aria-label="One identity, two filtrations">
+        <rect x="290" y="86" width="180" height="70" rx="8" fill="var(--card)" stroke="var(--ink)" stroke-width="2.2"/>
+        <text x="380" y="115" class="sT big" text-anchor="middle">ONE EXACT</text>
+        <text x="380" y="134" class="sT big" text-anchor="middle">WORK IDENTITY</text>
+        <path d="M286 121 L 208 121" stroke="var(--heat)" stroke-width="2.2" marker-end="url(#arrHo)"/>
+        <path d="M474 121 L 552 121" stroke="var(--info)" stroke-width="2.2" marker-end="url(#arrCo)"/>
+        <text x="118" y="70" class="sT hot" text-anchor="middle">read against the FUTURE</text>
+        <text x="118" y="112" class="sI" text-anchor="middle" font-size="16">"prediction pays"</text>
+        <text x="118" y="140" class="sT" text-anchor="middle">dissipation ≥ cryptic</text>
+        <text x="118" y="156" class="sT" text-anchor="middle">− oracular memory</text>
+        <text x="642" y="70" class="sT cool" text-anchor="middle">read against the PAST</text>
+        <text x="642" y="112" class="sI" text-anchor="middle" font-size="16">"action pays back"</text>
+        <text x="642" y="140" class="sT" text-anchor="middle">the classic feedback law</text>
+        <text x="642" y="156" class="sT" text-anchor="middle">(Massey's directed information)</text>
+        <text x="380" y="215" class="sT" text-anchor="middle">Neither bound dominates the other; where they cross, take the max.</text>
+        <defs>
+          <marker id="arrHo" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L8 4.5 L0 9 z" fill="var(--heat)"/></marker>
+          <marker id="arrCo" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L8 4.5 L0 9 z" fill="var(--info)"/></marker>
+        </defs>
+      </svg>
+  <figcaption><b>Two σ-algebra choices in one decomposition.</b> "Memory as liability" and "information as resource" turn out to be the same accounting, read left-to-right versus right-to-left, splitting one conserved total (the Massey–Kim conservation law — verified in our models to machine precision).</figcaption>
+</figure>
+  </div>
+</section>
+
+<section>
+  <div class="col">
+    <div class="eyebrow"><span class="n">Entry 09</span> Due diligence</div>
+    <h2>Trust, but enumerate</h2>
+    <p>A habit we insisted on throughout: every identity and inequality is <strong>machine-verified</strong>, not by simulation but by exact enumeration of the entire joint probability of every possible history. Identities check out to fourteen–sixteen decimal places. The sign of the feedback penalty survived a deliberate 12,000-model adversarial search built to break it. The bounds hold even in the strange regimes where net work is being extracted.</p>
+    <p>We also tuck in a practitioner's warning: if you try to <em>estimate</em> these quantities from finite recorded data, the future-conditioned terms are far hungrier for samples than the one-step ones, and naive estimates can err on the flattering side — an estimated heat floor is not a certificate. Building estimators that are guaranteed one-sided is one we leave open.</p>
+  </div>
+</section>
+
+<section>
+  <div class="col">
+    <div class="eyebrow"><span class="n">Entry 10</span> Beyond physics</div>
+    <h2>Why you might care</h2>
+    <p>Honestly: not because of your GPU bill. Real chips run astronomically above these fundamental floors. The interesting transfers are structural — strip the temperature off, and the identity is a statement about <em>representation</em>:</p>
+    <h3>For machine learning</h3>
+    <p>The right "memory penalty" for a recurrent state isn't a generic bottleneck that squeezes useful and useless bits alike — it's the <strong>cryptic</strong> part only: penalize what the state holds that the future context wouldn't reveal anyway. For agents, the regularizer refines further to <em>cryptic minus oracular</em>: writing state into the environment (a scratchpad, a file) is a legitimate 1:1 substitute for internal retention, and the theorem guarantees the credit can never overdraw.</p>
+    <h3>For systems engineers</h3>
+    <p>The ledger reads like a cache-eviction policy: an entry is safe to evict if it's non-cryptic given what you're keeping plus what's about to arrive — or if you've exported it to a persistent substrate the future computation will read. The physics and the systems folklore agree, now with an exact exchange rate.</p>
+    <h3>For the small and the hot</h3>
+    <p>Where temperature is literal — molecular machines, analog and stochastic computing — the feedback bound is a design law valid at any speed, and the one-number hardware correction prices the rest of the bill.</p>
+    <div class="ledger">
+  <div class="lhead"><b>Closing the books</b><span>the account in one line</span></div>
+  <div class="lrow debit"><span class="desc">Crypticity — secrets the world never repeats</span><span class="amt">DEBIT</span></div>
+  <div class="lrow debit"><span class="desc">Mismatch cost — hardware relaxing off-target</span><span class="amt">DEBIT</span></div>
+  <div class="lrow credit"><span class="desc">Feedback discount — memory exported to the future</span><span class="amt">CREDIT</span></div>
+  <div class="lrow zero"><span class="desc">Boundary terms</span><span class="amt">≥ 0</span></div>
+  <div class="lrow total"><span class="desc">= Dissipation. Every entry proven, every sign certified.</span><span class="amt">■</span></div>
+</div>
+    <p>The 2012 slogan was <em>a memory that doesn't predict must burn.</em> The 2026 amendment is gentler and stranger: <strong>only secrets burn — and a secret told to the world stops being a secret.</strong></p>
+  </div>
+</section>
+
+<footer>
+  <div class="col">
+    <p>This explainer compresses our technical paper into pictures; the paper itself is precise where this page waves hands. All interactive figures use our published, exactly-enumerated tables (Tables 1, 2, 6 and the §6 chaotic-map computations); curves between tabulated points are interpolated and marked as such. Nats, not bits, throughout — one nat ≈ 1.44 bits.</p>
+    <div class="fin">Fig. ledger closed · dissipation ≥ crypticity − oracularity · 2026</div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   Shared SVG helpers
+============================================================ */
+const NS = "http://www.w3.org/2000/svg";
+function el(tag, attrs, parent){
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function txt(parent, x, y, str, cls, anchor){
+  const t = el("text", {x, y, class: cls || "sT"}, parent);
+  if (anchor) t.setAttribute("text-anchor", anchor);
+  t.textContent = str;
+  return t;
+}
+function lerp(a,b,t){ return a + (b-a)*t; }
+function interp(xs, ys, x){
+  if (x <= xs[0]) return ys[0];
+  if (x >= xs[xs.length-1]) return ys[ys.length-1];
+  for (let i=0;i<xs.length-1;i++){
+    if (x >= xs[i] && x <= xs[i+1]){
+      const t = (x - xs[i]) / (xs[i+1]-xs[i]);
+      return lerp(ys[i], ys[i+1], t);
+    }
+  }
+  return ys[ys.length-1];
+}
+const CSS = getComputedStyle(document.documentElement);
+const C = {
+  ink: CSS.getPropertyValue('--ink').trim(),
+  mute: CSS.getPropertyValue('--mute').trim(),
+  faint: CSS.getPropertyValue('--faint').trim(),
+  rule: CSS.getPropertyValue('--rule').trim(),
+  heat: CSS.getPropertyValue('--heat').trim(),
+  heatS: CSS.getPropertyValue('--heat-soft').trim(),
+  info: CSS.getPropertyValue('--info').trim(),
+  infoS: CSS.getPropertyValue('--info-soft').trim(),
+  free: CSS.getPropertyValue('--free').trim(),
+  freeS: CSS.getPropertyValue('--free-soft').trim(),
+};
+
+/* ============================================================
+   Widget 1 · Window profile  (paper Table 1 + §4.1 feedback pad)
+============================================================ */
+const winData = {
+  hmm: {
+    label: "hidden-pattern world",
+    ys: [0.780, 0.708, 0.687, 0.684, 0.683, 0.682, 0.681, 0.680],
+    tabulated: [1,2,3,4,8],
+    note: k => k===1
+      ? "k = 1 is the classic 2012 bound — and the theorem says it's the <b>tightest</b> the family will ever be."
+      : "The summed bound can only slide <span class='hot'>downhill</span> as the window widens (Theorem 4). Wider ≠ tighter.",
+    color: C.info
+  },
+  echo: {
+    label: "echo world (x repeats after 3 ticks)",
+    ys: [1.075, 1.029, 0.478, 0.478, 0.478, 0.478, 0.478, 0.478],
+    tabulated: [1,2,3,4,8],
+    note: k => k<3
+      ? "The window is still too short to see the echo — the repeated bit looks like a secret."
+      : "<b>The cliff at k = 3.</b> Once the window spans the echo lag, the future reveals the repeat: most of the 'secret' becomes <span class='grn'>free</span>. Flatness onset reads off the world's memory span.",
+    color: C.info
+  },
+  fb: {
+    label: "feedback world (illustrative shape; endpoints from §4.1)",
+    ys: [-0.230, -0.090, 0.060, 0.170, 0.240, 0.280, 0.295, 0.300],
+    tabulated: [1,8],
+    note: k => "<b>It rises — which is supposed to be impossible.</b> A rising summed profile <span class='hot'>falsifies</span> the assumption that the world ignores you: it's a certificate of back-action, read off pure statistics. (Note k = 1 is even negative — under feedback the old bound can go below zero; the full-future one can't.)",
+    color: C.heat
+  }
+};
+let winEnv = "hmm";
+const winChart = document.getElementById("winChart");
+const winKsl = document.getElementById("winK");
+
+function drawWin(){
+  const d = winData[winEnv];
+  const k = +winKsl.value;
+  winChart.innerHTML = "";
+  const W=700, H=300, mL=64, mR=24, mT=26, mB=44;
+  const svg = el("svg",{viewBox:`0 0 ${W} ${H}`}, winChart);
+  const ymin = -0.35, ymax = 1.2;
+  const X = kk => mL + (kk-1)/(8-1)*(W-mL-mR);
+  const Y = v => mT + (ymax-v)/(ymax-ymin)*(H-mT-mB);
+  // gridlines
+  [0,0.5,1.0].forEach(v=>{
+    el("line",{x1:mL,x2:W-mR,y1:Y(v),y2:Y(v),stroke:C.rule,"stroke-width":1},svg);
+    txt(svg, mL-10, Y(v)+4, v.toFixed(1), "sT","end");
+  });
+  // zero line emphasis if fb
+  if (winEnv==="fb"){
+    el("line",{x1:mL,x2:W-mR,y1:Y(0),y2:Y(0),stroke:C.mute,"stroke-width":1.4,"stroke-dasharray":"5 4"},svg);
+  }
+  // x labels
+  for(let kk=1;kk<=8;kk++) txt(svg, X(kk), H-18, kk, "sT","middle");
+  txt(svg, (mL+W-mR)/2, H-2, "window width k  (1 = the 2012 bound · 8 = the full-future cryptic bound)", "sT","middle");
+  txt(svg, 16, mT-8, "summed bound (nats)", "sT");
+  // line
+  let path = "";
+  d.ys.forEach((v,i)=>{ path += (i? " L ":"M ") + X(i+1) + " " + Y(v); });
+  el("path",{d:path, fill:"none", stroke:d.color, "stroke-width":3, "stroke-linejoin":"round"},svg);
+  // points
+  d.ys.forEach((v,i)=>{
+    const kk=i+1;
+    const tab = d.tabulated.includes(kk);
+    el("circle",{cx:X(kk),cy:Y(v),r:tab?5:3.2,fill:tab?d.color:"#fff",stroke:d.color,"stroke-width":2},svg);
+  });
+  // annotations
+  if (winEnv==="echo"){
+    el("line",{x1:X(3),x2:X(3),y1:mT,y2:H-mB,stroke:C.faint,"stroke-width":1,"stroke-dasharray":"3 4"},svg);
+    txt(svg, X(3)+7, mT+14, "cliff = echo lag", "sT");
+  }
+  if (winEnv==="fb"){
+    txt(svg, X(6), Y(0.30)-14, "rising ⇒ the world is listening", "sT hot","middle");
+  }
+  if (winEnv==="hmm"){
+    txt(svg, X(2)+8, Y(0.780)-10, "tightest at k = 1", "sT cool");
+  }
+  // marker at k
+  const kv = d.ys[k-1];
+  el("line",{x1:X(k),x2:X(k),y1:Y(kv),y2:H-mB,stroke:d.color,"stroke-width":1.2,"stroke-dasharray":"2 3"},svg);
+  el("circle",{cx:X(k),cy:Y(kv),r:8,fill:"none",stroke:C.ink,"stroke-width":2},svg);
+  txt(svg, X(k), Y(kv)-14, kv.toFixed(3), "sT big","middle");
+
+  document.getElementById("winKval").textContent = "k = "+k;
+  document.getElementById("winRead").innerHTML =
+    `<b>${d.label}</b> · summed bound at k = ${k}: <b>${kv.toFixed(3)} nats</b>.<br>${d.note(k)}` +
+    (d.tabulated.length<8 ? " <span style='color:var(--faint)'>Solid dots = our exact table values; small dots interpolated.</span>" : "");
+}
+document.getElementById("envChips").addEventListener("click", e=>{
+  const b = e.target.closest(".chip"); if(!b) return;
+  document.querySelectorAll("#envChips .chip").forEach(c=>c.classList.remove("on"));
+  b.classList.add("on"); winEnv = b.dataset.env; drawWin();
+});
+winKsl.addEventListener("input", drawWin);
+drawWin();
+
+/* ============================================================
+   Widget 2 · Hybrid bound  (paper Table 2)
+============================================================ */
+const hyb = {
+  r:      [0.30, 0.50, 0.70, 0.90, 1.00],
+  W:      [2.105, 3.362, 4.700, 6.044, 6.675],
+  cry:    [0.088, 0.273, 0.605, 1.155, 1.548],
+  hybrid: [1.552, 2.611, 3.971, 5.675, 6.675]
+};
+const hybChart = document.getElementById("hybChart");
+const hybSl = document.getElementById("hybR");
+function drawHyb(){
+  const r = 0.30 + (hybSl.value/100)*0.70;
+  const W_ = interp(hyb.r, hyb.W, r);
+  const cry = interp(hyb.r, hyb.cry, r);
+  const hb  = interp(hyb.r, hyb.hybrid, r);
+  const kin = hb - cry;
+  const gap = W_ - hb;
+  hybChart.innerHTML = "";
+  const W=700, H=240, mL=24, mR=24;
+  const svg = el("svg",{viewBox:`0 0 ${W} ${H}`}, hybChart);
+  const maxW = 6.9;
+  const BX = v => mL + v/maxW*(W-mL-mR);
+  const barY=76, barH=54;
+  // hatch pattern for kinetic
+  const defs = el("defs",{},svg);
+  const pat = el("pattern",{id:"hatch",width:"7",height:"7",patternUnits:"userSpaceOnUse",patternTransform:"rotate(45)"},defs);
+  el("rect",{width:7,height:7,fill:C.heatS},pat);
+  el("line",{x1:0,y1:0,x2:0,y2:7,stroke:C.heat,"stroke-width":2.2},pat);
+  // total outline
+  txt(svg, mL, 40, "the true heat bill, and how much of it the bounds explain:", "sT");
+  el("rect",{x:BX(0),y:barY,width:BX(W_)-BX(0),height:barH,fill:"#F1F3EE",stroke:C.ink,"stroke-width":2},svg);
+  // info fill
+  el("rect",{x:BX(0),y:barY,width:Math.max(0,BX(cry)-BX(0)),height:barH,fill:C.infoS,stroke:C.info,"stroke-width":1.6},svg);
+  // kinetic fill
+  el("rect",{x:BX(cry),y:barY,width:Math.max(0,BX(hb)-BX(cry)),height:barH,fill:"url(#hatch)",stroke:C.heat,"stroke-width":1.6},svg);
+  // labels
+  txt(svg, BX(cry/2), barY+barH/2+4, "info", "sT cool","middle");
+  txt(svg, BX(cry + kin/2), barY+barH/2+4, "hardware charge", "sT hot","middle");
+  if (gap > 0.25) txt(svg, BX(hb + gap/2), barY+barH/2+4, "unexplained", "sT","middle");
+  // total bracket
+  el("line",{x1:BX(W_),x2:BX(W_),y1:barY-10,y2:barY+barH+10,stroke:C.ink,"stroke-width":2},svg);
+  txt(svg, Math.min(BX(W_)+8, W-150), barY-16, `total dissipated = ${W_.toFixed(2)} nats`, "sT big");
+  // scale
+  [0,2,4,6].forEach(v=>{
+    el("line",{x1:BX(v),x2:BX(v),y1:barY+barH+14,y2:barY+barH+20,stroke:C.faint,"stroke-width":1},svg);
+    txt(svg, BX(v), barY+barH+36, v+" nats", "sT","middle");
+  });
+  // legend
+  const ly=200;
+  el("rect",{x:mL,y:ly,width:14,height:14,fill:C.infoS,stroke:C.info,"stroke-width":1.5},svg);
+  txt(svg, mL+22, ly+12, "information bound (cryptic)", "sT");
+  el("rect",{x:mL+260,y:ly,width:14,height:14,fill:"url(#hatch)",stroke:C.heat,"stroke-width":1.5},svg);
+  txt(svg, mL+282, ly+12, "+ the one-number Dobrushin charge (1−r)·R", "sT");
+  const pct = Math.round(100*hb/W_), pctI = Math.round(100*cry/W_);
+  document.getElementById("hybRval").textContent = "r = "+r.toFixed(2);
+  document.getElementById("hybRead").innerHTML =
+    `At relaxation <b>r = ${r.toFixed(2)}</b>: information alone explains <span class="cool">${pctI}%</span> of the heat. ` +
+    `Add the single hardware number and the hybrid bound explains <span class="hot">${pct}%</span>.` +
+    (r>0.99 ? " <b>At r = 1 the bound is exact — the ledger closes to the last decimal.</b>"
+            : " Slide right: the more completely the machine relaxes, the tighter the account.");
+}
+hybSl.addEventListener("input", drawHyb);
+drawHyb();
+
+/* ============================================================
+   Widget 3 · Chaos knee  (§6: skew tent a=0.6, λ=0.673)
+============================================================ */
+const LAM = 0.673;
+let chaosP = 10;
+const chaosChart = document.getElementById("chaosChart");
+function chaosCurve(p, k){
+  const kstar = p*Math.LN2/LAM;
+  // schematic sigmoid: ~0 before knee, saturating to λ after (knee & asymptote exact)
+  return LAM/(1+Math.exp(-(k-kstar)/1.15));
+}
+function drawChaos(){
+  chaosChart.innerHTML = "";
+  const W=700,H=300,mL=60,mR=24,mT=24,mB=46;
+  const svg = el("svg",{viewBox:`0 0 ${W} ${H}`},chaosChart);
+  const kmax=22, ymax=0.8;
+  const X=k=>mL+k/kmax*(W-mL-mR), Y=v=>mT+(ymax-v)/ymax*(H-mT-mB);
+  [0,0.2,0.4,0.6].forEach(v=>{
+    el("line",{x1:mL,x2:W-mR,y1:Y(v),y2:Y(v),stroke:C.rule,"stroke-width":1},svg);
+    txt(svg,mL-10,Y(v)+4,v.toFixed(1),"sT","end");
+  });
+  [0,5,10,15,20].forEach(k=>txt(svg,X(k),H-20,k,"sT","middle"));
+  txt(svg,(mL+W-mR)/2,H-2,"window width k","sT","middle");
+  txt(svg,14,mT-6,"per-step cryptic rate (nats)","sT");
+  // asymptote
+  el("line",{x1:mL,x2:W-mR,y1:Y(LAM),y2:Y(LAM),stroke:C.free,"stroke-width":1.6,"stroke-dasharray":"6 5"},svg);
+  txt(svg,W-mR-4,Y(LAM)-8,"plateau = folding entropy = λ = 0.673","sT grn","end");
+  // ghost curves for other p
+  [6,10,14].filter(p=>p!==chaosP).forEach(p=>{
+    let d="";
+    for(let k=0;k<=kmax;k+=0.25){ d+=(d?" L ":"M ")+X(k)+" "+Y(chaosCurve(p,k)); }
+    el("path",{d,fill:"none",stroke:C.faint,"stroke-width":1.4,"stroke-dasharray":"2 4",opacity:.6},svg);
+  });
+  // active curve
+  let d="";
+  for(let k=0;k<=kmax;k+=0.25){ d+=(d?" L ":"M ")+X(k)+" "+Y(chaosCurve(chaosP,k)); }
+  el("path",{d,fill:"none",stroke:C.heat,"stroke-width":3},svg);
+  // knee marker
+  const kstar = chaosP*Math.LN2/LAM;
+  el("line",{x1:X(kstar),x2:X(kstar),y1:Y(LAM/2)+0,y2:H-mB,stroke:C.heat,"stroke-width":1.3,"stroke-dasharray":"3 4"},svg);
+  el("circle",{cx:X(kstar),cy:Y(LAM/2),r:6,fill:"#fff",stroke:C.heat,"stroke-width":2.4},svg);
+  txt(svg,X(kstar),H-mB-((H-mB)-Y(LAM/2))-14, "", "sT");
+  txt(svg,Math.min(X(kstar)+8,W-190),Y(LAM/2)-12,`knee at k* = p·ln2/λ ≈ ${kstar.toFixed(1)}`,"sT hot");
+  const meas = {6:7, 10:11, 14:15}[chaosP];
+  document.getElementById("chaosRead").innerHTML =
+    `Memory precision <b>p = ${chaosP} bits</b> (resolution δ = 2<sup>−${chaosP}</sup>). Predicted knee: <b>k* ≈ ${kstar.toFixed(1)}</b>; our exact computation measures onset at <b>k = ${meas}</b>. ` +
+    `Before the knee: chaos hasn't yet amplified differences past the lens — nothing looks secret. After: the fold is exposed, and the per-step cryptic rate saturates at the map's <span class="grn">information-destruction rate</span>. (Curve shape schematic; knee position and plateau are our exact values.)`;
+}
+document.getElementById("chaosChips").addEventListener("click",e=>{
+  const b=e.target.closest(".chip"); if(!b) return;
+  document.querySelectorAll("#chaosChips .chip").forEach(c=>c.classList.remove("on"));
+  b.classList.add("on"); chaosP=+b.dataset.p; drawChaos();
+});
+drawChaos();
+
+/* ============================================================
+   Widget 4 · Feedback / work extraction  (paper Table 6, r=0.5)
+============================================================ */
+const fb = {
+  g:     [0.00, 0.30, 0.70, 0.95],
+  W:     [1.107, 0.459, -0.299, -0.721],
+  bound: [0.310, 0.088, -0.784, -1.680],
+  orac:  [0.000, 0.240, 1.006, 1.629],
+  cry:   [0.310, 0.344, 0.302, 0.085]
+};
+const fbChart = document.getElementById("fbChart");
+const fbSl = document.getElementById("fbG");
+function drawFb(){
+  const g = fbSl.value/100;
+  fbChart.innerHTML = "";
+  const W=700,H=320,mL=64,mR=24,mT=26,mB=46;
+  const svg = el("svg",{viewBox:`0 0 ${W} ${H}`},fbChart);
+  const ymin=-1.9, ymax=1.4;
+  const X=v=>mL+v/0.95*(W-mL-mR), Y=v=>mT+(ymax-v)/(ymax-ymin)*(H-mT-mB);
+  // extraction region
+  el("rect",{x:mL,y:Y(0),width:W-mL-mR,height:(H-mB)-Y(0),fill:C.freeS,opacity:.45},svg);
+  txt(svg,W-mR-6,H-mB-10,"below zero: NET WORK EXTRACTED","sT grn","end");
+  [-1,0,1].forEach(v=>{
+    el("line",{x1:mL,x2:W-mR,y1:Y(v),y2:Y(v),stroke:v===0?C.mute:C.rule,"stroke-width":v===0?1.6:1,"stroke-dasharray":v===0?"":""},svg);
+    txt(svg,mL-10,Y(v)+4,v.toFixed(0),"sT","end");
+  });
+  [0,0.3,0.7,0.95].forEach(v=>txt(svg,X(v),H-20,v.toFixed(2),"sT","middle"));
+  txt(svg,(mL+W-mR)/2,H-2,"coupling g — probability the world copies the agent's state","sT","middle");
+  txt(svg,14,mT-8,"nats","sT");
+  // curves
+  function pathOf(ys, col, wdt, dash){
+    let d="";
+    for(let gg=0; gg<=0.9501; gg+=0.01){
+      d+=(d?" L ":"M ")+X(gg)+" "+Y(interp(fb.g,ys,gg));
+    }
+    el("path",{d,fill:"none",stroke:col,"stroke-width":wdt,"stroke-dasharray":dash||""},svg);
+  }
+  pathOf(fb.W, C.ink, 3);
+  pathOf(fb.bound, C.info, 2.4, "7 5");
+  // dots at tabulated points
+  fb.g.forEach((gg,i)=>{
+    el("circle",{cx:X(gg),cy:Y(fb.W[i]),r:4.5,fill:C.ink},svg);
+    el("circle",{cx:X(gg),cy:Y(fb.bound[i]),r:4.5,fill:"#fff",stroke:C.info,"stroke-width":2},svg);
+  });
+  // legend
+  el("line",{x1:mL+4,x2:mL+34,y1:mT+8,y2:mT+8,stroke:C.ink,"stroke-width":3},svg);
+  txt(svg,mL+42,mT+12,"true dissipated work","sT big");
+  el("line",{x1:mL+250,x2:mL+280,y1:mT+8,y2:mT+8,stroke:C.info,"stroke-width":2.4,"stroke-dasharray":"7 5"},svg);
+  txt(svg,mL+288,mT+12,"our proven floor (cryptic − oracular − coding)","sT cool");
+  // marker
+  const Wv=interp(fb.g,fb.W,g), Bv=interp(fb.g,fb.bound,g);
+  el("line",{x1:X(g),x2:X(g),y1:mT,y2:H-mB,stroke:C.faint,"stroke-width":1.1,"stroke-dasharray":"2 3"},svg);
+  el("circle",{cx:X(g),cy:Y(Wv),r:7,fill:"none",stroke:C.ink,"stroke-width":2},svg);
+  el("circle",{cx:X(g),cy:Y(Bv),r:7,fill:"none",stroke:C.info,"stroke-width":2},svg);
+  const cry=interp(fb.g,fb.cry,g), orc=interp(fb.g,fb.orac,g);
+  document.getElementById("fbGval").textContent = "g = "+g.toFixed(2);
+  document.getElementById("fbRead").innerHTML =
+    `<b>g = ${g.toFixed(2)}</b> · cryptic debit ≈ <span class="hot">${cry.toFixed(2)}</span>, oracular credit ≈ <span class="cool">${orc.toFixed(2)}</span> → floor ≈ <b>${Bv.toFixed(2)} nats</b>; true dissipation ≈ <b>${Wv.toFixed(2)} nats</b>. ` +
+    (Wv<0 ? `<span class="grn">The bill is negative: the agent is harvesting work from order it wrote into the world — a battery it charged itself.</span>`
+          : (g>0.01 ? `The oracular credit is growing; keep sliding and the account flips sign.` :
+             `No feedback: zero oracular credit, and the floor is pure cryptic debit — the passive-observer law.`));
+}
+fbSl.addEventListener("input", drawFb);
+drawFb();
+</script>
+</body>
+</html>
