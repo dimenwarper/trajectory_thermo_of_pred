@@ -1,4 +1,82 @@
-# Verification suite: "A Trajectory-Level Identity for the Thermodynamics of Prediction" (v2)
+# A Trajectory-Level Identity for the Thermodynamics of Prediction
+
+This repository holds a theoretical-physics paper and the machine-checked verification
+suite that certifies it. The paper derives an exact, trajectory-level identity for the
+**thermodynamics of prediction** — how much work a physical system must dissipate to
+track a structured signal, and how that cost is accounted for by the information the
+system stores about the signal.
+
+## The question
+
+A physical system driven by a structured input cannot avoid becoming correlated with
+it, and thermodynamics charges for the correlation. Still, Sivak, Bell & Crooks (2012)
+made this precise for a system that cannot influence its own input: the dissipated work
+per driving step is at least $k_BT$ times the system's *nostalgia* — the memory it keeps
+about the last input beyond what is useful for predicting the next one. That bound is
+per-step and assumes no back-action (no feedback from the system onto its environment).
+
+## What this work adds
+
+Starting from a single exact identity that makes **no causal assumption at all**, the
+paper generalizes the 2012 result to whole trajectories and to agents that act back on
+their environment. The central object is the two-stroke driven chain of Still et al. over
+a finite horizon $T$: each step, the environment signal $x_t \to x_{t+1}$ quenches the
+system's energy landscape, and the system then relaxes one step toward the new
+equilibrium. The environment may be arbitrary (hidden-Markov, long-memory,
+non-stationary) and, in the second half, may respond to the system's state.
+
+The identity states that total dissipated work equals the summed **cryptic information**
+
+$$\beta\langle W_{\mathrm{diss}}\rangle \;=\; \sum_t I[S_t;\,X_t \mid X_{t+1:T}] \;+\; \text{(a residual of characterized sign)},$$
+
+where the cryptic information is *what the state stores about the present signal that the
+signal's entire future never discloses again*. Information the future reveals anyway is
+thermodynamically free. Every downstream result is a sign analysis of the residual under
+a different choice of what to condition on (a "filtration"): future-conditioned choices
+give prediction-type bounds; past-conditioned choices give feedback-type bounds.
+
+### Headline results
+
+- **Exact, feedback-robust identity** (Theorem 1) — holds for arbitrary environment
+  statistics and arbitrary back-action.
+- **The window family is ordered** (Theorem 4) — without back-action the summed
+  sliding-window bounds are monotone in window width, so the original 2012 bound is the
+  *tightest* aggregate member. A rising window profile is therefore a certificate of
+  back-action, visible on the information layer alone.
+- **A kinetic completion** (Theorem 2) — pure information bounds recover only 4–30% of
+  dissipation; the deficit is kinetic, not informational. Adding *one number per bath* —
+  the relaxation kernel's Dobrushin contraction coefficient — yields a hybrid bound that
+  recovers 74–100%, exact at complete relaxation.
+- **The oracular discount** (Theorems 5–6) — with feedback the penalty is proved
+  non-negative and equals the state's *oracular information* about the observable future:
+  *an agent pays for memory by dissipating it or by writing it into the world's future.*
+- **Unification with directed information** (Theorem 7) — the past-conditioned filtration
+  of the same identity is exactly Massey's directed-information second law. "Prediction
+  pays" and "action pays back" are two σ-algebra choices in one decomposition.
+- **Chaotic observation, computed exactly** (§6) — for quantized expanding maps the
+  window profile is computed by exact interval arithmetic (no sampling); it is a rising
+  sigmoid with a single knee at the Lyapunov resolution horizon, asymptoting to the map's
+  folding entropy.
+
+Everything is machine-verified by **exact enumeration of the full joint path
+distribution** $p(s_{0:T}, x_{1:T})$ — no sampling — including adversarial model searches
+(12,000 models attacking the sign of the feedback penalty) and net-work-extraction
+regimes.
+
+## Repository contents
+
+| File / dir | What it is |
+|---|---|
+| `ttp_paper.md` | The manuscript. Start here for the full theory, proofs (Appendix A), and tables. |
+| `research_report.md` | Deep-dive verification report on the eight research directions, with `[proved]` / `[verified]` / `[empirical]` tags. Also records where verification *corrected* earlier claims (e.g. the pad-separation claim requires feedback; chaotic-map profiles rise rather than fall; one corollary is invalid at partial relaxation). |
+| `notes.md` | Working notes and scratch derivations. |
+| `scripts/` | The verification suite — `engine.py` (exact-enumeration engine) plus one script per manuscript claim. |
+| `results/` | Captured stdout of every script from the certification run. |
+| `requirements.txt` | Python dependencies (numpy, scipy). |
+
+---
+
+# Verification suite
 
 Every **[verified]** tag in the manuscript maps to a script here. All computations are
 exact enumeration of the full joint path distribution p(s_{0:T}, x_{1:T}) (no sampling),
