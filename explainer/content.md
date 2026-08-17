@@ -8,7 +8,7 @@ footer: This explainer compresses the technical paper. All interactive figures u
 footer_fin: Fig. ledger closed · dissipation ≥ crypticity − oracularity · 2026
 ---
 
-# [Entry 01 · The setup] Systems intrinsically learn naturally through thermodynamics
+# [Entry 01 · The setup] Systems learn naturally through thermodynamics
 
 :::lede
 A thermostat tracks the temperature. A bacterium tracks the sugar gradient it swims through. Your neurons track the sentence you're reading. They all take advantage of one simple thing: becoming a record of your surroundings kind of happens automatically (even if inefficienlty at first!), because anything a changing world pushes onto an internal system ends up statistically correlated with the how the pushing happens. Correlations propagate and change the systems they interact with.
