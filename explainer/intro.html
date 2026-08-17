@@ -254,7 +254,7 @@ footer .fin{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-tra
 <section>
   <div class="col">
     <div class="eyebrow"><span class="n">Entry 01</span> The setup</div>
-    <h2>A world that pushes, a system that settles</h2>
+    <h2>Systems intrinsically learn naturally through thermodynamics</h2>
     <p class="lede">A thermostat tracks the temperature. A bacterium tracks the sugar gradient it swims through. Your neurons track the sentence you're reading. They all take advantage of one simple thing: becoming a record of your surroundings kind of happens automatically (even if inefficienlty at first!), because anything a changing world pushes onto an internal system ends up statistically correlated with the how the pushing happens. Correlations propagate and change the systems they interact with.</p>
     <p>But those correlations have an energy bill. To see where the bill comes from, we use the simplest possible cartoon of "a thing driven by a world,". At each tick of time, two things happen:</p>
     <figure>
@@ -349,7 +349,7 @@ footer .fin{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-tra
 <section>
   <div class="col">
     <div class="eyebrow"><span class="n">Entry 03</span> The exact identity</div>
-    <h2>The cost of what never repeats</h2>
+    <h2>The cost of information what never repeats</h2>
     <p class="lede">Not all correlations in the world are predictive of its future. The system pays a cost for the memories it keeps that are never repeated.</p>
     <p>Consider what the system's state knows about the present signal. Some of that information will be repeated, and the future of the signal will reveal it whether or not the system bothered to remember. And some of it is <em>gone</em>: the signal's entire future, watched to the end of time, would never disclose it again. We call that second kind <span class="term hot">cryptic information</span> what the state stores about the present that the future never brings up abain.</p>
     <figure>
@@ -428,7 +428,7 @@ footer .fin{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-tra
   <div class="col">
     <div class="eyebrow"><span class="n">Entry 05</span> The missing heat</div>
     <h2>Where's the other seventy percent?</h2>
-    <p class="lede">Across every regime we test, information bounds — old or new — account for only <strong>4–30%</strong> of the heat actually wasted.</p>
+    <p class="lede">Across every regime we test, the information bounds — the Still bound or our cryptic bound — account for only <strong>4–30%</strong> of the heat actually wasted.</p>
     <p>The missing heat due to bound laxness has nothing to do with the signal or the memory. It's, however, a property of system itself: how completely it relaxes each step. A system that only slumps partway down each new valley leaves stored stress that dissipates later, and no amount of informational cleverness prices it. Is there a quantity that can describe this internal dynamic? Yes! Each thermal bath gets a coefficient (the <em><a href="https://www.researchgate.net/publication/265436392_A_generalization_of_Dobrushin_coefficient">Dobrushin coefficient</a></em> — roughly, "what fraction of the way to equilibrium does one step take you?"), and adding that one system constant to the ledger recovers <strong>74–100%</strong> of the bill.</p>
     <div class="widget">
       <div class="wtitle">Interactive · closing the gap with one hardware number (our Table 2)</div>
@@ -513,8 +513,8 @@ footer .fin{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-tra
 
 <section>
   <div class="col">
-    <div class="eyebrow"><span class="n">Entry 07</span> The mirror</div>
-    <h2>One ledger, two readings</h2>
+    <div class="eyebrow"><span class="n">Entry 07</span> Relationship to directed information</div>
+    <h2>A connection with communication theory</h2>
     <p>Consider Maxwell's demon: here information is a <strong>resource</strong>, where a feedback controller uses what it knows to extract work. It has its own second law, written in a quantity sometimes called <em><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5104982/">directed information</a></em>.</p>
     <p>We show that directed information and our oracle information are sort of the same thing. Theorem 1's equation contains a free choice: condition the bookkeeping on the signal's <em>future</em>, or on its <em>past</em>. Future-facing gives "prediction pays" (the cryptic part of the identity). Past-facing gives "action pays back", and turns out it reduces, exactly, to the classic directed-information. The two split a single conserved total of information between system and world.</p>
     <figure class="plain">
@@ -546,11 +546,11 @@ footer .fin{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-tra
 
 <section>
   <div class="col">
-    <div class="eyebrow"><span class="n">Entry 08</span> Beyond physics</div>
+    <div class="eyebrow"><span class="n">Entry 08</span> So what</div>
     <h2>Why you might care</h2>
-    <p>Unfortunately this does not affect your GPU bill. Real chips run astronomically above these fundamental floors. But it does yield some intuitions:</p>
+    <p>Unfortunately this does not affect your GPU bill (real chips run astronomically above these fundamental floors!). But the results perhaps do yield some intuitinos:</p>
     <h3>ML systems can design for cryptic or oracle information</h3>
-    <p>The right "memory penalty" for a neural architecture having a recurrent state isn't a generic bottleneck that squeezes useful and useless bits alike, but rather the <strong>cryptic</strong> part only. That is, penalize what the state holds that the future context would never repeat. For agents, the regularizer refines further to <em>cryptic minus oracular</em>: writing state into the environment (a scratchpad, a file) is a legitimate 1:1 substitute for internal retention, and the theorem guarantees the credit can never overdraw.</p>
+    <p>The right "memory penalty" for a neural architecture having a recurrent state isn't a generic bottleneck that squeezes useful and useless bits alike, but rather the <strong>cryptic</strong> part only. That is, you should directly and surgically penalize what the state holds that the future would never repeat. For agents, the regularizer refines further to <em>cryptic minus oracular</em>: writing state into the environment (a scratchpad, a file) is a legitimate 1:1 substitute for internal retention.</p>
     <h3>For the small and the hot</h3>
     <p>In molecular machines, e.g. analog and stochastic computing, the feedback bound is a design law valid at any speed, and the one-number hardware correction prices the rest of the bill.</p>
     <div class="ledger">

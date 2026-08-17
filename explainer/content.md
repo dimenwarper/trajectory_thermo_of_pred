@@ -8,7 +8,7 @@ footer: This explainer compresses the technical paper. All interactive figures u
 footer_fin: Fig. ledger closed · dissipation ≥ crypticity − oracularity · 2026
 ---
 
-# [Entry 01 · The setup] A world that pushes, a system that settles
+# [Entry 01 · The setup] Systems intrinsically learn naturally through thermodynamics
 
 :::lede
 A thermostat tracks the temperature. A bacterium tracks the sugar gradient it swims through. Your neurons track the sentence you're reading. They all take advantage of one simple thing: becoming a record of your surroundings kind of happens automatically (even if inefficienlty at first!), because anything a changing world pushes onto an internal system ends up statistically correlated with the how the pushing happens. Correlations propagate and change the systems they interact with.
@@ -41,7 +41,7 @@ In a landmark [paper](https://arxiv.org/abs/1203.3271) by Still, Sivak, Bell and
 
 That result launched a small field. But it also left two itches that we set out to scratch. <strong>First:</strong> "useful for the next tick of the clock" is a strangely short horizon. What about signals whose patterns only make sense over long stretches? Second, when you actually compute the bound, it typically explains only a small sliver of the heat a real system wastes. Where's the rest?
 
-# [Entry 03 · The exact identity] The cost of what never repeats
+# [Entry 03 · The exact identity] The cost of information what never repeats
 
 :::lede
 Not all correlations in the world are predictive of its future. The system pays a cost for the memories it keeps that are never repeated.
@@ -85,7 +85,7 @@ Read the shapes as follows:
 # [Entry 05 · The missing heat] Where's the other seventy percent?
 
 :::lede
-Across every regime we test, information bounds — old or new — account for only <strong>4–30%</strong> of the heat actually wasted.
+Across every regime we test, the information bounds — the Still bound or our cryptic bound — account for only <strong>4–30%</strong> of the heat actually wasted.
 :::
 
 The missing heat due to bound laxness has nothing to do with the signal or the memory. It's, however, a property of system itself: how completely it relaxes each step. A system that only slumps partway down each new valley leaves stored stress that dissipates later, and no amount of informational cleverness prices it. Is there a quantity that can describe this internal dynamic? Yes! Each thermal bath gets a coefficient (the <em>[Dobrushin coefficient](https://www.researchgate.net/publication/265436392_A_generalization_of_Dobrushin_coefficient)</em> — roughly, "what fraction of the way to equilibrium does one step take you?"), and adding that one system constant to the ledger recovers <strong>74–100%</strong> of the bill.
@@ -129,7 +129,7 @@ When the credits exceed the debits in the heat bill, the bound goes <em>negative
 A tempting shortcut, swap the exact penalty for a familiar quantity called backward transfer entropy, turns out to produce an <em>invalid</em> "law" whenever relaxation is incomplete. We exhibit explicit counterexamples where the fake bound exceeds the true dissipation, then show the correct oracular version quietly becomes the shortcut in the complete-relaxation limit.
 :::
 
-# [Entry 07 · The mirror] One ledger, two readings
+# [Entry 07 · Relationship to directed information] A connection with communication theory
 
 Consider Maxwell's demon: here information is a <strong>resource</strong>, where a feedback controller uses what it knows to extract work. It has its own second law, written in a quantity sometimes called <em>[directed information](https://pmc.ncbi.nlm.nih.gov/articles/PMC5104982/)</em>.
 
@@ -139,13 +139,13 @@ We show that directed information and our oracle information are sort of the sam
 <b>Two vantage points, one relationship.</b> "Memory as liability" and "information as resource" turn out to be the same accounting, read left-to-right versus right-to-left, splitting one conserved total (the Massey–Kim conservation law, verified in our models to machine precision).
 :::
 
-# [Entry 08 · Beyond physics] Why you might care
+# [Entry 08 · So what] Why you might care
 
-Unfortunately this does not affect your GPU bill. Real chips run astronomically above these fundamental floors. But it does yield some intuitions:
+Unfortunately this does not affect your GPU bill (real chips run astronomically above these fundamental floors!). But the results perhaps do yield some intuitinos:
 
 ### ML systems can design for cryptic or oracle information
 
-The right "memory penalty" for a neural architecture having a recurrent state isn't a generic bottleneck that squeezes useful and useless bits alike, but rather the <strong>cryptic</strong> part only. That is, penalize what the state holds that the future context would never repeat. For agents, the regularizer refines further to <em>cryptic minus oracular</em>: writing state into the environment (a scratchpad, a file) is a legitimate 1:1 substitute for internal retention, and the theorem guarantees the credit can never overdraw.
+The right "memory penalty" for a neural architecture having a recurrent state isn't a generic bottleneck that squeezes useful and useless bits alike, but rather the <strong>cryptic</strong> part only. That is, you should directly and surgically penalize what the state holds that the future would never repeat. For agents, the regularizer refines further to <em>cryptic minus oracular</em>: writing state into the environment (a scratchpad, a file) is a legitimate 1:1 substitute for internal retention.
 
 ### For the small and the hot
 
