@@ -2,7 +2,7 @@
 title: The Warmth in Remembering, an explainer
 kicker: An explainer to <a href="https://github.com/dimenwarper/trajectory_thermo_of_pred">trajectory and agent-level thermodynamics of prediction</a>
 hero_title: The Warmth in<br>Remembering
-hero_sub: Everything that reacts to the world keeps some record of it as transient scars in its thermodynamic profile. The price for such information is paid in heat. This is a layman's walkthrough of a set of results expanding on Still and Crook's Thermodynamics of Prediction, where we work out which memories cost, which are free, and the loophole that lets you bill the world instead.
+hero_sub: Everything that reacts to the world keeps some record of it as transient scars in its thermodynamic profile. The price for such information is paid in heat. This is a walkthrough of a <a href="https://github.com/dimenwarper/trajectory_thermo_of_pred">set of results</a> expanding on <a href="https://arxiv.org/abs/1203.3271">Still and Crook's Thermodynamics of Prediction</a>, where we work out which memories cost, which are free, and the loophole that lets you bill the world instead.
 hero_src: <b>Companion to:</b> <a href="https://github.com/dimenwarper/trajectory_thermo_of_pred">"A Trajectory-Level and Agent Back-Action Identities for the Thermodynamics of Prediction"</a>
 footer: This explainer compresses the technical paper. All interactive figures use data from our numeric results (Tables 1, 2, 6 and the §6 chaotic-map computations); curves between tabulated points are interpo/listenlated and marked as such. Nats, not bits, throughout, one nat ≈ 1.44 bits.
 footer_fin: Fig. ledger closed · dissipation ≥ crypticity − oracularity · 2026
@@ -28,7 +28,7 @@ How little heat can a system that lives in a changing world <i>possibly</i> wast
 
 # [Entry 02 · The 2012 rule] Useless memory costs heat
 
-In a landmark paper by Still, Sivak, Bell and Crooks proved that if a system is physically pushed around by an external signal, its internal state <span class="mth">S</span> inevitably carries information about the signal. They split that information in two:
+In a landmark [paper](https://arxiv.org/abs/1203.3271) by Still, Sivak, Bell and Crooks proved that if a system is physically pushed around by an external signal, its internal state <span class="mth">S</span> inevitably carries information about the signal. They split that information in two:
 
 :::raw
 <p style="margin-bottom:.6em"><strong style="color:var(--free)">The predictive part</strong>: bits about the current signal that are still useful for anticipating the <em>next</em> one.</p>
