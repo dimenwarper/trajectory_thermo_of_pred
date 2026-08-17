@@ -1,9 +1,9 @@
 ---
 title: The Warmth in Remembering, an explainer
-kicker: An explainer to trajectory and agent-level thermodynamics of prediction
+kicker: An explainer to <a href="https://github.com/dimenwarper/trajectory_thermo_of_pred">trajectory and agent-level thermodynamics of prediction</a>
 hero_title: The Warmth in<br>Remembering
 hero_sub: Everything that reacts to the world keeps some record of it as transient scars in its thermodynamic profile. The price for such information is paid in heat. This is a layman's walkthrough of a set of results expanding on Still and Crook's Thermodynamics of Prediction, where we work out which memories cost, which are free, and the loophole that lets you bill the world instead.
-hero_src: <b>Companion to:</b> "A Trajectory-Level and Agent Back-Action Identities for the Thermodynamics of Prediction"
+hero_src: <b>Companion to:</b> <a href="https://github.com/dimenwarper/trajectory_thermo_of_pred">"A Trajectory-Level and Agent Back-Action Identities for the Thermodynamics of Prediction"</a>
 footer: This explainer compresses the technical paper. All interactive figures use data from our numeric results (Tables 1, 2, 6 and the §6 chaotic-map computations); curves between tabulated points are interpo/listenlated and marked as such. Nats, not bits, throughout, one nat ≈ 1.44 bits.
 footer_fin: Fig. ledger closed · dissipation ≥ crypticity − oracularity · 2026
 ---
@@ -139,13 +139,7 @@ We show that directed information and our oracle information are sort of the sam
 <b>Two vantage points, one relationship.</b> "Memory as liability" and "information as resource" turn out to be the same accounting, read left-to-right versus right-to-left, splitting one conserved total (the Massey–Kim conservation law, verified in our models to machine precision).
 :::
 
-# [Entry 08 · Due diligence] Trust, but enumerate
-
-A habit we insisted on throughout: every identity and inequality is <strong>machine-verified</strong>, not by simulation but by exact enumeration of the entire joint probability of every possible history. Identities check out to fourteen–sixteen decimal places. The sign of the feedback penalty survived a deliberate 12,000-model adversarial search built to break it. The bounds hold even in the strange regimes where net work is being extracted.
-
-We also tuck in a practitioner's warning: if you try to <em>estimate</em> these quantities from finite recorded data, the future-conditioned terms are far hungrier for samples than the one-step ones, and naive estimates can err on the flattering side — an estimated heat floor is not a certificate. Building estimators that are guaranteed one-sided is one we leave open.
-
-# [Entry 09 · Beyond physics] Why you might care
+# [Entry 08 · Beyond physics] Why you might care
 
 Unfortunately this does not affect your GPU bill. Real chips run astronomically above these fundamental floors. But it does yield some intuitions:
 
