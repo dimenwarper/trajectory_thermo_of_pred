@@ -449,61 +449,6 @@ hybSl.addEventListener("input", drawHyb);
 drawHyb();
 
 /* ============================================================
-   Widget 3 · Chaos knee  (§6: skew tent a=0.6, λ=0.673)
-============================================================ */
-const LAM = 0.673;
-let chaosP = 10;
-const chaosChart = document.getElementById("chaosChart");
-function chaosCurve(p, k){
-  const kstar = p*Math.LN2/LAM;
-  // schematic sigmoid: ~0 before knee, saturating to λ after (knee & asymptote exact)
-  return LAM/(1+Math.exp(-(k-kstar)/1.15));
-}
-function drawChaos(){
-  chaosChart.innerHTML = "";
-  const W=700,H=300,mL=60,mR=24,mT=24,mB=46;
-  const svg = el("svg",{viewBox:`0 0 ${W} ${H}`},chaosChart);
-  const kmax=22, ymax=0.8;
-  const X=k=>mL+k/kmax*(W-mL-mR), Y=v=>mT+(ymax-v)/ymax*(H-mT-mB);
-  [0,0.2,0.4,0.6].forEach(v=>{
-    el("line",{x1:mL,x2:W-mR,y1:Y(v),y2:Y(v),stroke:C.rule,"stroke-width":1},svg);
-    txt(svg,mL-10,Y(v)+4,v.toFixed(1),"sT","end");
-  });
-  [0,5,10,15,20].forEach(k=>txt(svg,X(k),H-20,k,"sT","middle"));
-  txt(svg,(mL+W-mR)/2,H-2,"window width k","sT","middle");
-  txt(svg,14,mT-6,"per-step cryptic rate (nats)","sT");
-  // asymptote
-  el("line",{x1:mL,x2:W-mR,y1:Y(LAM),y2:Y(LAM),stroke:C.free,"stroke-width":1.6,"stroke-dasharray":"6 5"},svg);
-  txt(svg,W-mR-4,Y(LAM)-8,"plateau = folding entropy = λ = 0.673","sT grn","end");
-  // ghost curves for other p
-  [6,10,14].filter(p=>p!==chaosP).forEach(p=>{
-    let d="";
-    for(let k=0;k<=kmax;k+=0.25){ d+=(d?" L ":"M ")+X(k)+" "+Y(chaosCurve(p,k)); }
-    el("path",{d,fill:"none",stroke:C.faint,"stroke-width":1.4,"stroke-dasharray":"2 4",opacity:.6},svg);
-  });
-  // active curve
-  let d="";
-  for(let k=0;k<=kmax;k+=0.25){ d+=(d?" L ":"M ")+X(k)+" "+Y(chaosCurve(chaosP,k)); }
-  el("path",{d,fill:"none",stroke:C.heat,"stroke-width":3},svg);
-  // knee marker
-  const kstar = chaosP*Math.LN2/LAM;
-  el("line",{x1:X(kstar),x2:X(kstar),y1:Y(LAM/2)+0,y2:H-mB,stroke:C.heat,"stroke-width":1.3,"stroke-dasharray":"3 4"},svg);
-  el("circle",{cx:X(kstar),cy:Y(LAM/2),r:6,fill:"#fff",stroke:C.heat,"stroke-width":2.4},svg);
-  txt(svg,X(kstar),H-mB-((H-mB)-Y(LAM/2))-14, "", "sT");
-  txt(svg,Math.min(X(kstar)+8,W-190),Y(LAM/2)-12,`knee at k* = p·ln2/λ ≈ ${kstar.toFixed(1)}`,"sT hot");
-  const meas = {6:7, 10:11, 14:15}[chaosP];
-  document.getElementById("chaosRead").innerHTML =
-    `Memory precision <b>p = ${chaosP} bits</b> (resolution δ = 2<sup>−${chaosP}</sup>). Predicted knee: <b>k* ≈ ${kstar.toFixed(1)}</b>; our exact computation measures onset at <b>k = ${meas}</b>. ` +
-    `Before the knee: chaos hasn't yet amplified differences past the lens — nothing looks secret. After: the fold is exposed, and the per-step cryptic rate saturates at the map's <span class="grn">information-destruction rate</span>. (Curve shape schematic; knee position and plateau are our exact values.)`;
-}
-document.getElementById("chaosChips").addEventListener("click",e=>{
-  const b=e.target.closest(".chip"); if(!b) return;
-  document.querySelectorAll("#chaosChips .chip").forEach(c=>c.classList.remove("on"));
-  b.classList.add("on"); chaosP=+b.dataset.p; drawChaos();
-});
-drawChaos();
-
-/* ============================================================
    Widget 4 · Feedback / work extraction  (paper Table 6, r=0.5)
 ============================================================ */
 const fb = {

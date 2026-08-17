@@ -80,7 +80,7 @@ Read the shapes as follows:
 
 <strong>The cliff tells you the world's memory span.</strong> The echo world repeats each symbol three ticks later; its profile plummets exactly at width 3 — the moment the window becomes long enough to catch the repeat, most of the "secret" stops being secret. Flatness onset reads off the world's memory order.
 
-<strong>A rising profile should be impossible.</strong> The monotone theorem says summed profiles can only fall — <em>if the system never acts on the world</em>. So if you ever measure a rising one, you've caught the environment red-handed: it is reacting to the system (and your system needs to be agentic). It is a feedback detector of sorts, via statistics. (Hold that thought for Entry 07.)
+<strong>A rising profile should be impossible.</strong> The monotone theorem says summed profiles can only fall — <em>if the system never acts on the world</em>. So if you ever measure a rising one, you've caught the environment red-handed: it is reacting to the system (and your system needs to be agentic). It is a feedback detector of sorts, via statistics. (Hold that thought for Entry 06.)
 
 # [Entry 05 · The missing heat] Where's the other seventy percent?
 
@@ -95,26 +95,7 @@ The missing heat due to bound laxness has nothing to do with the signal or the m
 
 This prices in kinetic cost, which does not appear in the Stills and other such bounds. The missing dissipation belongs to the behavior of the system itself. At complete relaxation (<span class="mth">r = 1</span>), the hybrid bound isn't a bound at all: it's exact!.
 
-# [Entry 06 · A field test] A heat meter for chaos
-
-Can we apply this to any real system and get some thermodynamic insight? Does the window profile actually measure anything real? We point the instrument at the hardest kind of world: <strong>deterministic chaos, watched through a blurry lens.</strong> Imagine a chaotic map (the "skew tent map" — stretch the interval, fold it back) that you observe with only finite precision, say the first few binary digits. Then compute the window profile <em>exactly</em>, no sampling.
-
-You have three regimes
-
-:::widget chaos
-:::
-
-<strong>1 · The profile rises here</strong> — a sigmoid, the mirror image of the echo world's cliff. For short windows, chaos hasn't yet amplified microscopic differences past your lens's resolution, so nothing looks secret. <strong>2 · The knee sits exactly where chaos eats your decimal places:</strong> at window width <span class="mth">k* ≈ ln(1/precision) / λ</span>, where <span class="mth">λ</span> is the Lyapunov exponent — the map's stretching rate. Sharper memory pushes the knee right, by precisely the predicted amount. <strong>3 · The plateau equals the map's information-destruction rate</strong> (its "folding entropy" — for these maps, exactly <span class="mth">λ</span>). Our computed value: 0.5622 nats against a true 0.5623.
-
-:::pull
-A calorimeter, plus this bookkeeping, becomes a <i>chaos meter</i>: the heat ledger reads out how fast the world is destroying information.
-:::
-
-:::aside A subtle correction to folklore
-You might expect that for <em>reversible</em> chaos (e.g. baker's map, which folds but never truly destroys), long enough windows would drive the profile to zero. That is, the future should eventually reveal everything. We show this is not true: future observations resolve the <em>stretching</em> direction of chaos but carry exponentially fading news about the <em>squeezing</em> direction. Watching only forward in time, some of the past stays cryptic forever. Closing the gap would need windows that look both ways, an open problem we leave flagged.
-:::
-
-# [Entry 07 · The loophole] What if the system is agentic?
+# [Entry 06 · The loophole] What if the system is agentic?
 
 :::lede
 Everything so far assumed the world ignores the system. But real agents — ants, engineers, language models with scratchpads — <em>act</em>. And the moment the environment starts responding to the system, an interesting loophole appears inside the dissipation.
@@ -148,7 +129,7 @@ When the credits exceed the debits in the heat bill, the bound goes <em>negative
 A tempting shortcut, swap the exact penalty for a familiar quantity called backward transfer entropy, turns out to produce an <em>invalid</em> "law" whenever relaxation is incomplete. We exhibit explicit counterexamples where the fake bound exceeds the true dissipation, then show the correct oracular version quietly becomes the shortcut in the complete-relaxation limit.
 :::
 
-# [Entry 08 · The mirror] One ledger, two readings
+# [Entry 07 · The mirror] One ledger, two readings
 
 Consider Maxwell's demon: here information is a <strong>resource</strong>, where a feedback controller uses what it knows to extract work. It has its own second law, written in a quantity sometimes called <em>[directed information](https://pmc.ncbi.nlm.nih.gov/articles/PMC5104982/)</em>.
 
@@ -158,13 +139,13 @@ We show that directed information and our oracle information are sort of the sam
 <b>Two vantage points, one relationship.</b> "Memory as liability" and "information as resource" turn out to be the same accounting, read left-to-right versus right-to-left, splitting one conserved total (the Massey–Kim conservation law, verified in our models to machine precision).
 :::
 
-# [Entry 09 · Due diligence] Trust, but enumerate
+# [Entry 08 · Due diligence] Trust, but enumerate
 
 A habit we insisted on throughout: every identity and inequality is <strong>machine-verified</strong>, not by simulation but by exact enumeration of the entire joint probability of every possible history. Identities check out to fourteen–sixteen decimal places. The sign of the feedback penalty survived a deliberate 12,000-model adversarial search built to break it. The bounds hold even in the strange regimes where net work is being extracted.
 
 We also tuck in a practitioner's warning: if you try to <em>estimate</em> these quantities from finite recorded data, the future-conditioned terms are far hungrier for samples than the one-step ones, and naive estimates can err on the flattering side — an estimated heat floor is not a certificate. Building estimators that are guaranteed one-sided is one we leave open.
 
-# [Entry 10 · Beyond physics] Why you might care
+# [Entry 09 · Beyond physics] Why you might care
 
 Unfortunately this does not affect your GPU bill. Real chips run astronomically above these fundamental floors. But it does yield some intuitions:
 

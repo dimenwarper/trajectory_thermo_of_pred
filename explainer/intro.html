@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Price of Remembering — an interactive explainer</title>
+<title>The Warmth in Remembering, an explainer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -244,10 +244,10 @@ footer .fin{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-tra
 <!-- ================= HERO ================= -->
 <header>
   <div class="col">
-    <div class="kicker"><span class="dot"></span> An interactive explainer · thermodynamics of prediction</div>
-    <h1>The Price of<br>Remembering</h1>
-    <p class="hero-sub">Every thing that reacts to the world keeps a record of it — and physics charges rent for records, paid in heat. A layman's walk through our 2026 paper, where we work out <em>exactly</em> which memories cost, which are free, and the loophole that lets you bill the world instead.</p>
-    <div class="hero-src"><b>Companion to our paper:</b> "A Trajectory-Level Identity for the Thermodynamics of Prediction, With and Without Back-Action" (2026). This page simplifies aggressively; every number in the interactive figures comes from our machine-verified tables.</div>
+    <div class="kicker"><span class="dot"></span> An explainer to trajectory and agent-level thermodynamics of prediction</div>
+    <h1>The Warmth in<br>Remembering</h1>
+    <p class="hero-sub">Everything that reacts to the world keeps some record of it as transient scars in its thermodynamic profile. The price for such information is paid in heat. This is a layman's walkthrough of a set of results expanding on Still and Crook's Thermodynamics of Prediction, where we work out which memories cost, which are free, and the loophole that lets you bill the world instead.</p>
+    <div class="hero-src"><b>Companion to:</b> "A Trajectory-Level and Agent Back-Action Identities for the Thermodynamics of Prediction"</div>
   </div>
 </header>
 
@@ -255,8 +255,8 @@ footer .fin{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-tra
   <div class="col">
     <div class="eyebrow"><span class="n">Entry 01</span> The setup</div>
     <h2>A world that pushes, a system that settles</h2>
-    <p class="lede">A thermostat tracks the temperature. A bacterium tracks the sugar gradient it swims through. Your neurons track the sentence you're reading. None of them chose to become records of their surroundings — it happens automatically, because anything a changing world pushes on ends up statistically correlated with the pushing.</p>
-    <p>Statistical physics has a striking thing to say about this: <strong>those correlations have an energy bill.</strong> To see where the bill comes from, we use the simplest possible cartoon of "a thing driven by a world," borrowed from a famous 2012 result. Time ticks in steps. At each tick, two things happen:</p>
+    <p class="lede">A thermostat tracks the temperature. A bacterium tracks the sugar gradient it swims through. Your neurons track the sentence you're reading. They all take advantage of one simple thing: becoming a record of your surroundings kind of happens automatically (even if inefficienlty at first!), because anything a changing world pushes onto an internal system ends up statistically correlated with the how the pushing happens. Correlations propagate and change the systems they interact with.</p>
+    <p>But those correlations have an energy bill. To see where the bill comes from, we use the simplest possible cartoon of "a thing driven by a world,". At each tick of time, two things happen:</p>
     <figure>
   <span class="figtag">FIG 1</span>
   <svg viewBox="0 0 760 300" role="img" aria-label="Two-stroke cycle: quench then relaxation">
@@ -300,10 +300,10 @@ footer .fin{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-tra
           <marker id="arrC" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L8 4.5 L0 9 z" fill="var(--info)"/></marker>
         </defs>
       </svg>
-  <figcaption><b>The two-stroke heartbeat.</b> Each time step: (1) the environment signal jumps, which instantly reshapes the system's energy landscape — that shove does <span style="color:var(--heat);font-weight:600">work</span> on the system; (2) the system relaxes one step toward the new valley, dumping <span style="color:var(--heat);font-weight:600">heat</span> into its surroundings. The environment can be anything: rhythmic, random, long-memoried — later, even something that listens back.</figcaption>
+  <figcaption><b>The two-stroke heartbeat.</b> Each time step: (1) the environment signal jumps, which instantly reshapes the system's energy landscape. That shove does <span style="color:var(--heat);font-weight:600">work</span> on the system; (2) the system relaxes one step toward the new valley, dumping <span style="color:var(--heat);font-weight:600">heat</span> into its surroundings. The environment can be anything: rhythmic, random, long-memoried. Later, even something that listens back.</figcaption>
 </figure>
-    <p>Some of the work pushed in is legitimately stored (the system ends up higher on the ladder of useful free energy). The rest is <span class="term hot">dissipated work</span> — energy that came in as an orderly shove and left as disorderly heat. Wasted. The whole game of this subject is:</p>
-    <div class="pull">How little heat can a system that lives in a changing world <i>possibly</i> waste — and what does the answer have to do with what it remembers?</div>
+    <p>Some of the work pushed in is legitimately stored (the system ends up higher on the ladder of useful free energy). The rest is <span class="term hot">dissipated work</span>: energy that came in as an orderly shove and left as disorderly heat. The gist is then:</p>
+    <div class="pull">How little heat can a system that lives in a changing world <i>possibly</i> waste and what does the answer have to do with what it remembers?</div>
   </div>
 </section>
 
@@ -311,9 +311,9 @@ footer .fin{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-tra
   <div class="col">
     <div class="eyebrow"><span class="n">Entry 02</span> The 2012 rule</div>
     <h2>Useless memory costs heat</h2>
-    <p>In 2012, Still, Sivak, Bell and Crooks proved something lovely. Because the system is physically pushed around by the signal, its internal state <span class="mth">S</span> inevitably carries information about the signal. Split that information in two:</p>
-    <p style="margin-bottom:.6em"><strong style="color:var(--free)">The predictive part</strong> — bits about the current signal that are still useful for anticipating the <em>next</em> one.</p>
-<p><strong style="color:var(--heat)">The nostalgic part</strong> — bits about the current signal that will be useless one tick from now. Memory for memory's sake.</p>
+    <p>In a landmark paper by Still, Sivak, Bell and Crooks proved that if a system is physically pushed around by an external signal, its internal state <span class="mth">S</span> inevitably carries information about the signal. They split that information in two:</p>
+    <p style="margin-bottom:.6em"><strong style="color:var(--free)">The predictive part</strong>: bits about the current signal that are still useful for anticipating the <em>next</em> one.</p>
+<p><strong style="color:var(--heat)">The nostalgic part</strong>: bits about the current signal that will be useless one tick from now. Memory for memory's sake.</p>
     <figure>
   <span class="figtag">FIG 2</span>
   <svg viewBox="0 0 760 260" role="img" aria-label="Nostalgia: memory of now minus usefulness for next step">
@@ -340,18 +340,18 @@ footer .fin{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-tra
         <text x="470" y="216" class="sT">predict costs at least one bit's worth</text>
         <text x="470" y="232" class="sT">of dissipated energy.</text>
       </svg>
-  <figcaption><b>Nostalgia = memory − predictive power.</b> The 2012 bound: dissipated work per step is at least <span class="mth">k<tspan style="font-size:.8em">B</tspan>T</span> × nostalgia. Clinging to the past, if the past won't help you with the future, is physically expensive. A perfect predictor — remembering only what forecasts — can in principle run cool.</figcaption>
+  <figcaption><b>Nostalgia = memory − predictive power.</b> The Still bound: dissipated work per step is at least <span class="mth">k<tspan style="font-size:.8em">B</tspan>T</span> × nostalgia. Clinging to the past, if the past won't help you with the future, is physically expensive. A perfect predictor, i.e. remembering only what forecasts, can in principle run cool.</figcaption>
 </figure>
-    <p>That result launched a small field. But it also left two itches that we set out to scratch. <strong>First:</strong> "useful for the next tick" is a strangely short horizon — what about signals whose patterns only make sense over long stretches? <strong>Second, and more embarrassing:</strong> when you actually compute the bound, it typically explains only a small sliver of the heat a real system wastes. Where's the rest?</p>
+    <p>That result launched a small field. But it also left two itches that we set out to scratch. <strong>First:</strong> "useful for the next tick of the clock" is a strangely short horizon. What about signals whose patterns only make sense over long stretches? Second, when you actually compute the bound, it typically explains only a small sliver of the heat a real system wastes. Where's the rest?</p>
   </div>
 </section>
 
 <section>
   <div class="col">
     <div class="eyebrow"><span class="n">Entry 03</span> The exact identity</div>
-    <h2>Only secrets cost</h2>
-    <p class="lede">Our first move is to stop asking "is this memory useful to <em>me</em>?" and start asking "will the <em>world itself</em> ever repeat it?"</p>
-    <p>Here is the reframe. Look at everything the system's state knows about the present signal. Some of that information will be broadcast again anyway — the future of the signal will reveal it, whether or not the system bothered to remember. And some of it is <em>gone</em>: the signal's entire future, watched to the end of time, would never disclose it again. We call that second kind <span class="term hot">cryptic information</span> — what the state stores about the present that the future never tells.</p>
+    <h2>The cost of what never repeats</h2>
+    <p class="lede">Not all correlations in the world are predictive of its future. The system pays a cost for the memories it keeps that are never repeated.</p>
+    <p>Consider what the system's state knows about the present signal. Some of that information will be repeated, and the future of the signal will reveal it whether or not the system bothered to remember. And some of it is <em>gone</em>: the signal's entire future, watched to the end of time, would never disclose it again. We call that second kind <span class="term hot">cryptic information</span> what the state stores about the present that the future never brings up abain.</p>
     <figure>
   <span class="figtag">FIG 3</span>
   <svg viewBox="0 0 760 300" role="img" aria-label="Cryptic information: what the state knows about now that the future never reveals">
@@ -383,32 +383,32 @@ footer .fin{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-tra
         <path d="M264 173 Q 360 200 340 226" fill="none" stroke="var(--mute)" stroke-width="1.3" stroke-dasharray="3 4"/>
         <defs><marker id="arrC2" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L8 4.5 L0 9 z" fill="var(--info)"/></marker></defs>
       </svg>
-  <figcaption><b>The green part is thermodynamically free</b> — whether or not the system ever "uses" it — because the world's own future is a backup copy. Only the <b>red, cryptic part</b> shows up on the heat bill. In symbols: cryptic information is <span class="mth">I[S<tspan style="font-size:.75em">t</tspan> ; x<tspan style="font-size:.75em">t</tspan> | future]</span>, the state's knowledge of now <em>given</em> the whole future.</figcaption>
+  <figcaption><b>The green part is thermodynamically free</b> — whether or not the system ever "uses" it — because the world's own future is a backup copy. Only the <b>red, cryptic part</b> shows up as heat. In symbols: cryptic information is <span class="mth">I[S<tspan style="font-size:.75em">t</tspan> ; x<tspan style="font-size:.75em">t</tspan> | future]</span>, the state's knowledge of now <em>given</em> the whole future.</figcaption>
 </figure>
-    <p>And now the punchline — not an inequality but an <em>equality</em>, our Theorem 1, valid for any environment whatsoever, even one the system talks back to:</p>
+    <p>This results in a simple equality:</p>
     <div class="ledger">
   <div class="lhead"><b>Ledger · Theorem 1</b><span>exact, always</span></div>
   <div class="lrow debit"><span class="desc">Cryptic information, summed over all steps<small>secrets the future never repeats</small></span><span class="amt">DEBIT</span></div>
   <div class="lrow debit"><span class="desc">A "residual" of leftover terms<small>this is where the rest of the story hides</small></span><span class="amt">DEBIT / CREDIT</span></div>
   <div class="lrow total"><span class="desc">= Total dissipated work (in units of k<sub>B</sub>T)</span><span class="amt">EXACT</span></div>
 </div>
-    <p>When the environment doesn't listen back, the residual is provably ≥ 0, so you get a clean law: <strong>dissipation ≥ total cryptic information.</strong> The heat bill only ever charges you for secrets. Everything we do from here on is, quite literally, an audit of that residual line.</p>
-    <div class="aside"><span class="k">Why this generalizes 2012</span>If the signal happens to be memoryless-simple (Markov), "what the future reveals" collapses to "what the next symbol reveals," and this new law reduces exactly to the 2012 nostalgia bound. The new statement is what nostalgia <em>wanted</em> to be for worlds with long, tangled memories.</div>
+    <p>When the system does not affect the future of the external signal (that is, non-agentic), the residual is provably ≥ 0, so you get a clean law: <strong>dissipation ≥ total cryptic information.</strong> The heat results only for that which never repeats. This residual behaves differently depending on the assumptions of the system.</p>
+    <div class="aside"><span class="k">Why this generalizes the Still inequality</span>If the signal happens to be Markovian, "what the future reveals" collapses to "what the next symbol reveals," and this new law reduces exactly to the Still nostalgia bound. The new statement is what nostalgia <em>wanted</em> to be for worlds with tangled memories.</div>
   </div>
 </section>
 
 <section>
   <div class="col">
-    <div class="eyebrow"><span class="n">Entry 04</span> A family of laws</div>
+    <div class="eyebrow"><span class="n">Entry 04</span> A family of relationships</div>
     <h2>How far into the future should you peek?</h2>
-    <p>Between "compare against the next tick" (2012) and "compare against the entire future" (cryptic) sits a whole family: judge the system's memory against a sliding <strong>window of the next <span class="mth">k</span> symbols</strong>. Every window width gives a valid heat bound. So which is best? Bigger windows are more forgiving — surely their bounds are tighter?</p>
-    <p><strong>No — and we prove it's the opposite.</strong> Summed over a whole trajectory, the bounds only get <em>weaker</em> as the window grows. The humble one-step 2012 bound is the tightest member of the entire family, always, for any world that doesn't listen back. The value of the family isn't a better number. It's the <em>shape</em> of the curve, which turns out to be a diagnostic instrument. Try it:</p>
+    <p>Between "compare against the next temporal step" (Still bound) and "compare against the entire future" (the cryptic bound above) sits a whole family: judge the system's memory against a sliding <strong>window of the next <span class="mth">k</span> symbols</strong>. Every window width gives a valid heat bound. So which is best? Bigger windows are more forgiving, so maybe their bounds are tighter?</p>
+    <p><strong>Actually the opposite.</strong> Summed over a whole trajectory, the bounds only get <em>weaker</em> as the window grows. The humble one-step Still bound is the tightest member of the entire family, always, for any system that's not agentic. It's the <em>shape</em> of the curve, which turns out to be a diagnostic instrument. Try it:</p>
     <div class="widget">
       <div class="wtitle">Interactive · the window profile (real numbers from our Table 1, T = 8)</div>
       <div class="chips" id="envChips">
         <button class="chip on" data-env="hmm">Hidden-pattern world</button>
         <button class="chip" data-env="echo">Echo world (repeats itself, lag 3)</button>
-        <button class="chip" data-env="fb">A world that listens back</button>
+        <button class="chip" data-env="fb">An agentic system</button>
       </div>
       <div id="winChart"></div>
       <div class="sliderRow">
@@ -418,9 +418,9 @@ footer .fin{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-tra
       </div>
       <div class="readout" id="winRead"></div>
     </div>
-    <p>Read the shapes like a doctor reads an EKG:</p>
+    <p>Read the shapes as follows:</p>
     <p><strong>The cliff tells you the world's memory span.</strong> The echo world repeats each symbol three ticks later; its profile plummets exactly at width 3 — the moment the window becomes long enough to catch the repeat, most of the "secret" stops being secret. Flatness onset reads off the world's memory order.</p>
-    <p><strong>A rising profile should be impossible.</strong> The monotone theorem says summed profiles can only fall — <em>if the world is autonomous</em>. So if you ever measure a rising one, you've caught the environment red-handed: it is reacting to the system. <strong>A feedback detector made of pure statistics</strong>, no thermometer required. (Hold that thought for Entry 07.)</p>
+    <p><strong>A rising profile should be impossible.</strong> The monotone theorem says summed profiles can only fall — <em>if the system never acts on the world</em>. So if you ever measure a rising one, you've caught the environment red-handed: it is reacting to the system (and your system needs to be agentic). It is a feedback detector of sorts, via statistics. (Hold that thought for Entry 06.)</p>
   </div>
 </section>
 
@@ -428,8 +428,8 @@ footer .fin{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-tra
   <div class="col">
     <div class="eyebrow"><span class="n">Entry 05</span> The missing heat</div>
     <h2>Where's the other seventy percent?</h2>
-    <p class="lede">Here's the embarrassment mentioned earlier, now with numbers: across every regime we test, information bounds — old or new — account for only <strong>4–30%</strong> of the heat actually wasted. For a "law of physics," that's a lot of unexplained bill.</p>
-    <p>Our answer reframes the whole complaint. The missing heat has nothing to do with the signal or the memory. It's a property of <strong>the hardware</strong>: how completely the system relaxes each step. A system that only slumps partway down each new valley leaves stored stress that dissipates later, and no amount of informational cleverness prices it — but <em>one single number</em> does. Each thermal bath gets a coefficient (the <em>Dobrushin coefficient</em> — roughly, "what fraction of the way to equilibrium does one step take you?"), and adding that one hardware constant to the ledger recovers <strong>74–100%</strong> of the bill.</p>
+    <p class="lede">Across every regime we test, information bounds — old or new — account for only <strong>4–30%</strong> of the heat actually wasted.</p>
+    <p>The missing heat due to bound laxness has nothing to do with the signal or the memory. It's, however, a property of system itself: how completely it relaxes each step. A system that only slumps partway down each new valley leaves stored stress that dissipates later, and no amount of informational cleverness prices it. Is there a quantity that can describe this internal dynamic? Yes! Each thermal bath gets a coefficient (the <em><a href="https://www.researchgate.net/publication/265436392_A_generalization_of_Dobrushin_coefficient">Dobrushin coefficient</a></em> — roughly, "what fraction of the way to equilibrium does one step take you?"), and adding that one system constant to the ledger recovers <strong>74–100%</strong> of the bill.</p>
     <div class="widget">
       <div class="wtitle">Interactive · closing the gap with one hardware number (our Table 2)</div>
       <div class="sliderRow">
@@ -440,38 +440,16 @@ footer .fin{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-tra
       <div id="hybChart"></div>
       <div class="readout" id="hybRead"></div>
     </div>
-    <p>Notice the moral inversion. The standard critique was "information bounds are loose, hence weak." Our version: information terms were never <em>supposed</em> to price the kinetic cost — the missing dissipation belongs to the machine, not the message, and a single kernel constant settles it. At complete relaxation (<span class="mth">r = 1</span>), the hybrid bound isn't a bound at all: it's <em>exact</em>.</p>
+    <p>This prices in kinetic cost, which does not appear in the Stills and other such bounds. The missing dissipation belongs to the behavior of the system itself. At complete relaxation (<span class="mth">r = 1</span>), the hybrid bound isn't a bound at all: it's exact!.</p>
   </div>
 </section>
 
 <section>
   <div class="col">
-    <div class="eyebrow"><span class="n">Entry 06</span> A field test</div>
-    <h2>A heat meter for chaos</h2>
-    <p>Does the window profile actually measure anything real? We point the instrument at the hardest kind of world: <strong>deterministic chaos, watched through a blurry lens.</strong> Imagine a chaotic map (the "skew tent map" — stretch the interval, fold it back) that you observe with only finite precision, say the first few binary digits. Then compute the window profile <em>exactly</em>, no sampling.</p>
-    <p>Three clean signatures fall out:</p>
-    <div class="widget">
-      <div class="wtitle">Interactive · chaos under a blurry lens (skew tent map, exact computation)</div>
-      <div class="chips" id="chaosChips">
-        <button class="chip" data-p="6">coarse memory (6 bits)</button>
-        <button class="chip on" data-p="10">medium (10 bits)</button>
-        <button class="chip" data-p="14">fine (14 bits)</button>
-      </div>
-      <div id="chaosChart"></div>
-      <div class="readout" id="chaosRead"></div>
-    </div>
-    <p><strong>1 · The profile rises here</strong> — a sigmoid, the mirror image of the echo world's cliff. For short windows, chaos hasn't yet amplified microscopic differences past your lens's resolution, so nothing looks secret. <strong>2 · The knee sits exactly where chaos eats your decimal places:</strong> at window width <span class="mth">k* ≈ ln(1/precision) / λ</span>, where <span class="mth">λ</span> is the Lyapunov exponent — the map's stretching rate. Sharper memory pushes the knee right, by precisely the predicted amount. <strong>3 · The plateau equals the map's information-destruction rate</strong> (its "folding entropy" — for these maps, exactly <span class="mth">λ</span>). Our computed value: 0.5622 nats against a true 0.5623.</p>
-    <div class="pull">A calorimeter, plus this bookkeeping, becomes a <i>chaos meter</i>: the heat ledger reads out how fast the world is destroying information.</div>
-    <div class="aside"><span class="k">A subtle correction to folklore</span>You might expect that for <em>reversible</em> chaos (like the baker's map, which folds but never truly destroys), long enough windows would drive the profile to zero — the future should eventually reveal everything. We show this fails: future observations resolve the <em>stretching</em> direction of chaos but carry exponentially fading news about the <em>squeezing</em> direction. Watching only forward in time, some of the past stays cryptic forever. Closing the gap would need windows that look both ways — an open problem we leave flagged.</div>
-  </div>
-</section>
-
-<section>
-  <div class="col">
-    <div class="eyebrow"><span class="n">Entry 07</span> The loophole</div>
-    <h2>Write it into the world</h2>
-    <p class="lede">Everything so far assumed the world ignores you. But real agents — ants, engineers, language models with scratchpads — <em>act</em>. And the moment the environment starts responding to the system, a remarkable loophole opens in the heat bill.</p>
-    <p>An ant doesn't remember the route to food. It lays pheromone — it <strong>writes its memory into the world</strong>, and later reads it back off the trail. You do the same with sticky notes, filenames, and the arrangement of objects on your desk. Biologists call it <em>stigmergy</em>. We prove this trick has an exact thermodynamic value.</p>
+    <div class="eyebrow"><span class="n">Entry 06</span> The loophole</div>
+    <h2>What if the system is agentic?</h2>
+    <p class="lede">Everything so far assumed the world ignores the system. But real agents — ants, engineers, language models with scratchpads — <em>act</em>. And the moment the environment starts responding to the system, an interesting loophole appears inside the dissipation.</p>
+    <p>An ant doesn't remember the route to food. It lays pheromones - it <strong>writes its memory into the world</strong> - and later reads it back off the trail. You do the same with sticky notes, filenames, and the arrangement of objects on your desk. In biology this is called <em>stigmergy</em>. We prove this trick has an exact thermodynamic value.</p>
     <figure>
   <span class="figtag">FIG 4</span>
   <svg viewBox="0 0 760 290" role="img" aria-label="Two ways to pay for memory: dissipate it, or export it to the world">
@@ -507,9 +485,9 @@ footer .fin{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-tra
         <text x="580" y="228" class="sT grn" text-anchor="middle">earns a CREDIT: the "oracular" discount</text>
         <defs><marker id="arrC3" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L8 4.5 L0 9 z" fill="var(--info)"/></marker></defs>
       </svg>
-  <figcaption><b>Stigmergy, priced.</b> The discount's exact currency is <b>oracular information</b>: what the agent's state tells about the world's <em>future</em> beyond what the current observation already shows. A purely passive observer has zero of it (its state is just a digest of the past). An agent that stamps its memory into the world has plenty — and each nat of it is worth one nat off the cryptic charge.</figcaption>
+  <figcaption><b>Stigmergy, priced.</b> The discount's exact currency is <b>oracular information</b>: what the agent's state tells about the world's <em>future</em> beyond what the current observation already shows. A purely passive observer has zero of it (its state is just a digest of the past). An agent that stamps its memory into the world has plenty. Each nat of it is worth one nat off the cryptic charge.</figcaption>
 </figure>
-    <p>With feedback switched on, the residual acquires a per-step penalty, and we prove two crucial things about it: the penalty <strong>never flips sign</strong> (verified against 12,000 adversarially optimized models trying to break it — minimum found: exactly zero), and it is <em>exactly</em> the oracular information minus a harmless defect. Dropping the defect gives our headline inequality, valid at any relaxation speed:</p>
+    <p>With feedback switched on, the residual acquires a per-step penalty, and we prove two things about it: the penalty <strong>never flips sign</strong> (verified against 12,000 adversarially optimized models trying to break it — minimum found: exactly zero), and it is <em>exactly</em> the oracular information minus a harmless defect. Dropping the defect gives our headline inequality, valid at any relaxation speed:</p>
     <div class="ledger">
   <div class="lhead"><b>Ledger · the master account</b><span>Corollary 6</span></div>
   <div class="lrow debit"><span class="desc">Hidden (cryptic) state information<small>secrets held internally, summed over time</small></span><span class="amt">+ DEBIT</span></div>
@@ -517,8 +495,8 @@ footer .fin{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-tra
   <div class="lrow credit"><span class="desc">Initial coding cost<small>what the starting state already encoded</small></span><span class="amt">− CREDIT</span></div>
   <div class="lrow total"><span class="desc">≤ Dissipated work</span><span class="amt">THE LAW</span></div>
 </div>
-    <div class="pull">An agent pays for memory by dissipating it — <i>or by writing it into the world's future.</i></div>
-    <p>And when the credits exceed the debits, the bound goes <em>negative</em>: the system can extract net work, running on the order it previously stamped into its surroundings. Our tables realize this regime explicitly. Watch it happen:</p>
+    <div class="pull">An agent pays for memory either by dissipating it <i>or by writing it into the world's future.</i></div>
+    <p>When the credits exceed the debits in the heat bill, the bound goes <em>negative</em>!: the system can extract net work, running on the order it previously stamped into its surroundings. Our tables realize this regime explicitly. Watch it happen:</p>
     <div class="widget">
       <div class="wtitle">Interactive · turning the environment into a battery (our Table 6, r = 0.5)</div>
       <div class="sliderRow">
@@ -529,16 +507,16 @@ footer .fin{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-tra
       <div id="fbChart"></div>
       <div class="readout" id="fbRead"></div>
     </div>
-    <div class="aside"><span class="k">A trap we defuse</span>A tempting shortcut — swap the exact penalty for a familiar quantity called backward transfer entropy — turns out to produce an <em>invalid</em> "law" whenever relaxation is incomplete. We exhibit explicit counterexamples where the fake bound exceeds the true dissipation, then show the correct oracular version quietly becomes the shortcut in the complete-relaxation limit. The moral: in this subject, plausible substitutions need proofs.</div>
+    <div class="aside"><span class="k">A trap we defuse</span>A tempting shortcut, swap the exact penalty for a familiar quantity called backward transfer entropy, turns out to produce an <em>invalid</em> "law" whenever relaxation is incomplete. We exhibit explicit counterexamples where the fake bound exceeds the true dissipation, then show the correct oracular version quietly becomes the shortcut in the complete-relaxation limit.</div>
   </div>
 </section>
 
 <section>
   <div class="col">
-    <div class="eyebrow"><span class="n">Entry 08</span> The mirror</div>
+    <div class="eyebrow"><span class="n">Entry 07</span> The mirror</div>
     <h2>One ledger, two readings</h2>
-    <p>There has long been a <em>second</em> tradition of information thermodynamics, descending from Maxwell's demon: information as a <strong>resource</strong>, where a feedback controller uses what it knows to extract work. It has its own second law, written in a quantity called <em>directed information</em>. Two literatures, two laws — prediction costs versus feedback profits.</p>
-    <p>Our final structural result: <strong>they are the same identity.</strong> Theorem 1's equation contains a free choice — condition the bookkeeping on the signal's <em>future</em>, or on its <em>past</em>. Future-facing gives "prediction pays" (the cryptic law). Past-facing gives "action pays back" — and reduces, exactly, to the classic directed-information second law. The two split a single conserved total of information between system and world.</p>
+    <p>Consider Maxwell's demon: here information is a <strong>resource</strong>, where a feedback controller uses what it knows to extract work. It has its own second law, written in a quantity sometimes called <em><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5104982/">directed information</a></em>.</p>
+    <p>We show that directed information and our oracle information are sort of the same thing. Theorem 1's equation contains a free choice: condition the bookkeeping on the signal's <em>future</em>, or on its <em>past</em>. Future-facing gives "prediction pays" (the cryptic part of the identity). Past-facing gives "action pays back", and turns out it reduces, exactly, to the classic directed-information. The two split a single conserved total of information between system and world.</p>
     <figure class="plain">
   <span class="figtag">FIG 5</span>
   <svg viewBox="0 0 760 250" role="img" aria-label="One identity, two filtrations">
@@ -561,14 +539,14 @@ footer .fin{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-tra
           <marker id="arrCo" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L8 4.5 L0 9 z" fill="var(--info)"/></marker>
         </defs>
       </svg>
-  <figcaption><b>Two σ-algebra choices in one decomposition.</b> "Memory as liability" and "information as resource" turn out to be the same accounting, read left-to-right versus right-to-left, splitting one conserved total (the Massey–Kim conservation law — verified in our models to machine precision).</figcaption>
+  <figcaption><b>Two vantage points, one relationship.</b> "Memory as liability" and "information as resource" turn out to be the same accounting, read left-to-right versus right-to-left, splitting one conserved total (the Massey–Kim conservation law, verified in our models to machine precision).</figcaption>
 </figure>
   </div>
 </section>
 
 <section>
   <div class="col">
-    <div class="eyebrow"><span class="n">Entry 09</span> Due diligence</div>
+    <div class="eyebrow"><span class="n">Entry 08</span> Due diligence</div>
     <h2>Trust, but enumerate</h2>
     <p>A habit we insisted on throughout: every identity and inequality is <strong>machine-verified</strong>, not by simulation but by exact enumeration of the entire joint probability of every possible history. Identities check out to fourteen–sixteen decimal places. The sign of the feedback penalty survived a deliberate 12,000-model adversarial search built to break it. The bounds hold even in the strange regimes where net work is being extracted.</p>
     <p>We also tuck in a practitioner's warning: if you try to <em>estimate</em> these quantities from finite recorded data, the future-conditioned terms are far hungrier for samples than the one-step ones, and naive estimates can err on the flattering side — an estimated heat floor is not a certificate. Building estimators that are guaranteed one-sided is one we leave open.</p>
@@ -577,30 +555,28 @@ footer .fin{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-tra
 
 <section>
   <div class="col">
-    <div class="eyebrow"><span class="n">Entry 10</span> Beyond physics</div>
+    <div class="eyebrow"><span class="n">Entry 09</span> Beyond physics</div>
     <h2>Why you might care</h2>
-    <p>Honestly: not because of your GPU bill. Real chips run astronomically above these fundamental floors. The interesting transfers are structural — strip the temperature off, and the identity is a statement about <em>representation</em>:</p>
-    <h3>For machine learning</h3>
-    <p>The right "memory penalty" for a recurrent state isn't a generic bottleneck that squeezes useful and useless bits alike — it's the <strong>cryptic</strong> part only: penalize what the state holds that the future context wouldn't reveal anyway. For agents, the regularizer refines further to <em>cryptic minus oracular</em>: writing state into the environment (a scratchpad, a file) is a legitimate 1:1 substitute for internal retention, and the theorem guarantees the credit can never overdraw.</p>
-    <h3>For systems engineers</h3>
-    <p>The ledger reads like a cache-eviction policy: an entry is safe to evict if it's non-cryptic given what you're keeping plus what's about to arrive — or if you've exported it to a persistent substrate the future computation will read. The physics and the systems folklore agree, now with an exact exchange rate.</p>
+    <p>Unfortunately this does not affect your GPU bill. Real chips run astronomically above these fundamental floors. But it does yield some intuitions:</p>
+    <h3>ML systems can design for cryptic or oracle information</h3>
+    <p>The right "memory penalty" for a neural architecture having a recurrent state isn't a generic bottleneck that squeezes useful and useless bits alike, but rather the <strong>cryptic</strong> part only. That is, penalize what the state holds that the future context would never repeat. For agents, the regularizer refines further to <em>cryptic minus oracular</em>: writing state into the environment (a scratchpad, a file) is a legitimate 1:1 substitute for internal retention, and the theorem guarantees the credit can never overdraw.</p>
     <h3>For the small and the hot</h3>
-    <p>Where temperature is literal — molecular machines, analog and stochastic computing — the feedback bound is a design law valid at any speed, and the one-number hardware correction prices the rest of the bill.</p>
+    <p>In molecular machines, e.g. analog and stochastic computing, the feedback bound is a design law valid at any speed, and the one-number hardware correction prices the rest of the bill.</p>
     <div class="ledger">
   <div class="lhead"><b>Closing the books</b><span>the account in one line</span></div>
-  <div class="lrow debit"><span class="desc">Crypticity — secrets the world never repeats</span><span class="amt">DEBIT</span></div>
+  <div class="lrow debit"><span class="desc">Crypticity — informtion the world never repeats</span><span class="amt">DEBIT</span></div>
   <div class="lrow debit"><span class="desc">Mismatch cost — hardware relaxing off-target</span><span class="amt">DEBIT</span></div>
   <div class="lrow credit"><span class="desc">Feedback discount — memory exported to the future</span><span class="amt">CREDIT</span></div>
   <div class="lrow zero"><span class="desc">Boundary terms</span><span class="amt">≥ 0</span></div>
-  <div class="lrow total"><span class="desc">= Dissipation. Every entry proven, every sign certified.</span><span class="amt">■</span></div>
+  <div class="lrow total"><span class="desc">= Dissipation.</span><span class="amt">■</span></div>
 </div>
-    <p>The 2012 slogan was <em>a memory that doesn't predict must burn.</em> The 2026 amendment is gentler and stranger: <strong>only secrets burn — and a secret told to the world stops being a secret.</strong></p>
+    <p>The original Still bound stated that <em>a memory that doesn't predict must burn.</em> The amendment here is: <strong>only the unpredictable burns, but you can cool it off by acting on the world</strong></p>
   </div>
 </section>
 
 <footer>
   <div class="col">
-    <p>This explainer compresses our technical paper into pictures; the paper itself is precise where this page waves hands. All interactive figures use our published, exactly-enumerated tables (Tables 1, 2, 6 and the §6 chaotic-map computations); curves between tabulated points are interpolated and marked as such. Nats, not bits, throughout — one nat ≈ 1.44 bits.</p>
+    <p>This explainer compresses the technical paper. All interactive figures use data from our numeric results (Tables 1, 2, 6 and the §6 chaotic-map computations); curves between tabulated points are interpo/listenlated and marked as such. Nats, not bits, throughout, one nat ≈ 1.44 bits.</p>
     <div class="fin">Fig. ledger closed · dissipation ≥ crypticity − oracularity · 2026</div>
   </div>
 </footer>
@@ -720,7 +696,7 @@ function drawWin(){
     txt(svg, X(3)+7, mT+14, "cliff = echo lag", "sT");
   }
   if (winEnv==="fb"){
-    txt(svg, X(6), Y(0.30)-14, "rising ⇒ the world is listening", "sT hot","middle");
+    txt(svg, X(6), Y(0.30)-14, "rising ⇒ the world reacts to the agent", "sT hot","middle");
   }
   if (winEnv==="hmm"){
     txt(svg, X(2)+8, Y(0.780)-10, "tightest at k = 1", "sT cool");
@@ -808,61 +784,6 @@ function drawHyb(){
 }
 hybSl.addEventListener("input", drawHyb);
 drawHyb();
-
-/* ============================================================
-   Widget 3 · Chaos knee  (§6: skew tent a=0.6, λ=0.673)
-============================================================ */
-const LAM = 0.673;
-let chaosP = 10;
-const chaosChart = document.getElementById("chaosChart");
-function chaosCurve(p, k){
-  const kstar = p*Math.LN2/LAM;
-  // schematic sigmoid: ~0 before knee, saturating to λ after (knee & asymptote exact)
-  return LAM/(1+Math.exp(-(k-kstar)/1.15));
-}
-function drawChaos(){
-  chaosChart.innerHTML = "";
-  const W=700,H=300,mL=60,mR=24,mT=24,mB=46;
-  const svg = el("svg",{viewBox:`0 0 ${W} ${H}`},chaosChart);
-  const kmax=22, ymax=0.8;
-  const X=k=>mL+k/kmax*(W-mL-mR), Y=v=>mT+(ymax-v)/ymax*(H-mT-mB);
-  [0,0.2,0.4,0.6].forEach(v=>{
-    el("line",{x1:mL,x2:W-mR,y1:Y(v),y2:Y(v),stroke:C.rule,"stroke-width":1},svg);
-    txt(svg,mL-10,Y(v)+4,v.toFixed(1),"sT","end");
-  });
-  [0,5,10,15,20].forEach(k=>txt(svg,X(k),H-20,k,"sT","middle"));
-  txt(svg,(mL+W-mR)/2,H-2,"window width k","sT","middle");
-  txt(svg,14,mT-6,"per-step cryptic rate (nats)","sT");
-  // asymptote
-  el("line",{x1:mL,x2:W-mR,y1:Y(LAM),y2:Y(LAM),stroke:C.free,"stroke-width":1.6,"stroke-dasharray":"6 5"},svg);
-  txt(svg,W-mR-4,Y(LAM)-8,"plateau = folding entropy = λ = 0.673","sT grn","end");
-  // ghost curves for other p
-  [6,10,14].filter(p=>p!==chaosP).forEach(p=>{
-    let d="";
-    for(let k=0;k<=kmax;k+=0.25){ d+=(d?" L ":"M ")+X(k)+" "+Y(chaosCurve(p,k)); }
-    el("path",{d,fill:"none",stroke:C.faint,"stroke-width":1.4,"stroke-dasharray":"2 4",opacity:.6},svg);
-  });
-  // active curve
-  let d="";
-  for(let k=0;k<=kmax;k+=0.25){ d+=(d?" L ":"M ")+X(k)+" "+Y(chaosCurve(chaosP,k)); }
-  el("path",{d,fill:"none",stroke:C.heat,"stroke-width":3},svg);
-  // knee marker
-  const kstar = chaosP*Math.LN2/LAM;
-  el("line",{x1:X(kstar),x2:X(kstar),y1:Y(LAM/2)+0,y2:H-mB,stroke:C.heat,"stroke-width":1.3,"stroke-dasharray":"3 4"},svg);
-  el("circle",{cx:X(kstar),cy:Y(LAM/2),r:6,fill:"#fff",stroke:C.heat,"stroke-width":2.4},svg);
-  txt(svg,X(kstar),H-mB-((H-mB)-Y(LAM/2))-14, "", "sT");
-  txt(svg,Math.min(X(kstar)+8,W-190),Y(LAM/2)-12,`knee at k* = p·ln2/λ ≈ ${kstar.toFixed(1)}`,"sT hot");
-  const meas = {6:7, 10:11, 14:15}[chaosP];
-  document.getElementById("chaosRead").innerHTML =
-    `Memory precision <b>p = ${chaosP} bits</b> (resolution δ = 2<sup>−${chaosP}</sup>). Predicted knee: <b>k* ≈ ${kstar.toFixed(1)}</b>; our exact computation measures onset at <b>k = ${meas}</b>. ` +
-    `Before the knee: chaos hasn't yet amplified differences past the lens — nothing looks secret. After: the fold is exposed, and the per-step cryptic rate saturates at the map's <span class="grn">information-destruction rate</span>. (Curve shape schematic; knee position and plateau are our exact values.)`;
-}
-document.getElementById("chaosChips").addEventListener("click",e=>{
-  const b=e.target.closest(".chip"); if(!b) return;
-  document.querySelectorAll("#chaosChips .chip").forEach(c=>c.classList.remove("on"));
-  b.classList.add("on"); chaosP=+b.dataset.p; drawChaos();
-});
-drawChaos();
 
 /* ============================================================
    Widget 4 · Feedback / work extraction  (paper Table 6, r=0.5)
