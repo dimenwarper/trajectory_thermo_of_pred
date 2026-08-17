@@ -1,59 +1,59 @@
 ---
-title: The Price of Remembering — an interactive explainer
-kicker: An interactive explainer · thermodynamics of prediction
-hero_title: The Price of<br>Remembering
-hero_sub: Every thing that reacts to the world keeps a record of it — and physics charges rent for records, paid in heat. A layman's walk through our 2026 paper, where we work out <em>exactly</em> which memories cost, which are free, and the loophole that lets you bill the world instead.
-hero_src: <b>Companion to our paper:</b> "A Trajectory-Level Identity for the Thermodynamics of Prediction, With and Without Back-Action" (2026). This page simplifies aggressively; every number in the interactive figures comes from our machine-verified tables.
-footer: This explainer compresses our technical paper into pictures; the paper itself is precise where this page waves hands. All interactive figures use our published, exactly-enumerated tables (Tables 1, 2, 6 and the §6 chaotic-map computations); curves between tabulated points are interpolated and marked as such. Nats, not bits, throughout — one nat ≈ 1.44 bits.
+title: The Warmth in Remembering, an explainer
+kicker: An explainer to trajectory and agent-level thermodynamics of prediction
+hero_title: The Warmth in<br>Remembering
+hero_sub: Everything that reacts to the world keeps some record of it as transient scars in its thermodynamic profile. The price for such information is paid in heat. This is a layman's walkthrough of a set of results expanding on Still and Crook's Thermodynamics of Prediction, where we work out which memories cost, which are free, and the loophole that lets you bill the world instead.
+hero_src: <b>Companion to:</b> "A Trajectory-Level and Agent Back-Action Identities for the Thermodynamics of Prediction"
+footer: This explainer compresses the technical paper. All interactive figures use data from our numeric results (Tables 1, 2, 6 and the §6 chaotic-map computations); curves between tabulated points are interpo/listenlated and marked as such. Nats, not bits, throughout, one nat ≈ 1.44 bits.
 footer_fin: Fig. ledger closed · dissipation ≥ crypticity − oracularity · 2026
 ---
 
 # [Entry 01 · The setup] A world that pushes, a system that settles
 
 :::lede
-A thermostat tracks the temperature. A bacterium tracks the sugar gradient it swims through. Your neurons track the sentence you're reading. None of them chose to become records of their surroundings — it happens automatically, because anything a changing world pushes on ends up statistically correlated with the pushing.
+A thermostat tracks the temperature. A bacterium tracks the sugar gradient it swims through. Your neurons track the sentence you're reading. They all take advantage of one simple thing: becoming a record of your surroundings kind of happens automatically (even if inefficienlty at first!), because anything a changing world pushes onto an internal system ends up statistically correlated with the how the pushing happens. Correlations propagate and change the systems they interact with.
 :::
 
-Statistical physics has a striking thing to say about this: <strong>those correlations have an energy bill.</strong> To see where the bill comes from, we use the simplest possible cartoon of "a thing driven by a world," borrowed from a famous 2012 result. Time ticks in steps. At each tick, two things happen:
+But those correlations have an energy bill. To see where the bill comes from, we use the simplest possible cartoon of "a thing driven by a world,". At each tick of time, two things happen:
 
 :::figure "FIG 1" two-stroke
-<b>The two-stroke heartbeat.</b> Each time step: (1) the environment signal jumps, which instantly reshapes the system's energy landscape — that shove does <span style="color:var(--heat);font-weight:600">work</span> on the system; (2) the system relaxes one step toward the new valley, dumping <span style="color:var(--heat);font-weight:600">heat</span> into its surroundings. The environment can be anything: rhythmic, random, long-memoried — later, even something that listens back.
+<b>The two-stroke heartbeat.</b> Each time step: (1) the environment signal jumps, which instantly reshapes the system's energy landscape. That shove does <span style="color:var(--heat);font-weight:600">work</span> on the system; (2) the system relaxes one step toward the new valley, dumping <span style="color:var(--heat);font-weight:600">heat</span> into its surroundings. The environment can be anything: rhythmic, random, long-memoried. Later, even something that listens back.
 :::
 
-Some of the work pushed in is legitimately stored (the system ends up higher on the ladder of useful free energy). The rest is <span class="term hot">dissipated work</span> — energy that came in as an orderly shove and left as disorderly heat. Wasted. The whole game of this subject is:
+Some of the work pushed in is legitimately stored (the system ends up higher on the ladder of useful free energy). The rest is <span class="term hot">dissipated work</span>: energy that came in as an orderly shove and left as disorderly heat. The gist is then:
 
 :::pull
-How little heat can a system that lives in a changing world <i>possibly</i> waste — and what does the answer have to do with what it remembers?
+How little heat can a system that lives in a changing world <i>possibly</i> waste and what does the answer have to do with what it remembers?
 :::
 
 # [Entry 02 · The 2012 rule] Useless memory costs heat
 
-In 2012, Still, Sivak, Bell and Crooks proved something lovely. Because the system is physically pushed around by the signal, its internal state <span class="mth">S</span> inevitably carries information about the signal. Split that information in two:
+In a landmark paper by Still, Sivak, Bell and Crooks proved that if a system is physically pushed around by an external signal, its internal state <span class="mth">S</span> inevitably carries information about the signal. They split that information in two:
 
 :::raw
-<p style="margin-bottom:.6em"><strong style="color:var(--free)">The predictive part</strong> — bits about the current signal that are still useful for anticipating the <em>next</em> one.</p>
-<p><strong style="color:var(--heat)">The nostalgic part</strong> — bits about the current signal that will be useless one tick from now. Memory for memory's sake.</p>
+<p style="margin-bottom:.6em"><strong style="color:var(--free)">The predictive part</strong>: bits about the current signal that are still useful for anticipating the <em>next</em> one.</p>
+<p><strong style="color:var(--heat)">The nostalgic part</strong>: bits about the current signal that will be useless one tick from now. Memory for memory's sake.</p>
 :::
 
 :::figure "FIG 2" nostalgia
-<b>Nostalgia = memory − predictive power.</b> The 2012 bound: dissipated work per step is at least <span class="mth">k<tspan style="font-size:.8em">B</tspan>T</span> × nostalgia. Clinging to the past, if the past won't help you with the future, is physically expensive. A perfect predictor — remembering only what forecasts — can in principle run cool.
+<b>Nostalgia = memory − predictive power.</b> The Still bound: dissipated work per step is at least <span class="mth">k<tspan style="font-size:.8em">B</tspan>T</span> × nostalgia. Clinging to the past, if the past won't help you with the future, is physically expensive. A perfect predictor, i.e. remembering only what forecasts, can in principle run cool.
 :::
 
-That result launched a small field. But it also left two itches that we set out to scratch. <strong>First:</strong> "useful for the next tick" is a strangely short horizon — what about signals whose patterns only make sense over long stretches? <strong>Second, and more embarrassing:</strong> when you actually compute the bound, it typically explains only a small sliver of the heat a real system wastes. Where's the rest?
+That result launched a small field. But it also left two itches that we set out to scratch. <strong>First:</strong> "useful for the next tick of the clock" is a strangely short horizon. What about signals whose patterns only make sense over long stretches? Second, when you actually compute the bound, it typically explains only a small sliver of the heat a real system wastes. Where's the rest?
 
-# [Entry 03 · The exact identity] Only secrets cost
+# [Entry 03 · The exact identity] The cost of what never repeats
 
 :::lede
-Our first move is to stop asking "is this memory useful to <em>me</em>?" and start asking "will the <em>world itself</em> ever repeat it?"
+Not all correlations in the world are predictive of its future. The system pays a cost for the memories it keeps that are never repeated.
 :::
 
-Here is the reframe. Look at everything the system's state knows about the present signal. Some of that information will be broadcast again anyway — the future of the signal will reveal it, whether or not the system bothered to remember. And some of it is <em>gone</em>: the signal's entire future, watched to the end of time, would never disclose it again. We call that second kind <span class="term hot">cryptic information</span> — what the state stores about the present that the future never tells.
+Consider what the system's state knows about the present signal. Some of that information will be repeated, and the future of the signal will reveal it whether or not the system bothered to remember. And some of it is <em>gone</em>: the signal's entire future, watched to the end of time, would never disclose it again. We call that second kind <span class="term hot">cryptic information</span> what the state stores about the present that the future never brings up abain.
 
 :::figure "FIG 3" cryptic
-<b>The green part is thermodynamically free</b> — whether or not the system ever "uses" it — because the world's own future is a backup copy. Only the <b>red, cryptic part</b> shows up on the heat bill. In symbols: cryptic information is <span class="mth">I[S<tspan style="font-size:.75em">t</tspan> ; x<tspan style="font-size:.75em">t</tspan> | future]</span>, the state's knowledge of now <em>given</em> the whole future.
+<b>The green part is thermodynamically free</b> — whether or not the system ever "uses" it — because the world's own future is a backup copy. Only the <b>red, cryptic part</b> shows up as heat. In symbols: cryptic information is <span class="mth">I[S<tspan style="font-size:.75em">t</tspan> ; x<tspan style="font-size:.75em">t</tspan> | future]</span>, the state's knowledge of now <em>given</em> the whole future.
 :::
 
-And now the punchline — not an inequality but an <em>equality</em>, our Theorem 1, valid for any environment whatsoever, even one the system talks back to:
+This results in a simple equality:
 
 :::ledger Ledger · Theorem 1 | exact, always
 debit | Cryptic information, summed over all steps | secrets the future never repeats | DEBIT
@@ -61,45 +61,45 @@ debit | A "residual" of leftover terms | this is where the rest of the story hid
 total | = Total dissipated work (in units of k<sub>B</sub>T) | | EXACT
 :::
 
-When the environment doesn't listen back, the residual is provably ≥ 0, so you get a clean law: <strong>dissipation ≥ total cryptic information.</strong> The heat bill only ever charges you for secrets. Everything we do from here on is, quite literally, an audit of that residual line.
+When the system does not affect the future of the external signal (that is, non-agentic), the residual is provably ≥ 0, so you get a clean law: <strong>dissipation ≥ total cryptic information.</strong> The heat results only for that which never repeats. This residual behaves differently depending on the assumptions of the system.
 
-:::aside Why this generalizes 2012
-If the signal happens to be memoryless-simple (Markov), "what the future reveals" collapses to "what the next symbol reveals," and this new law reduces exactly to the 2012 nostalgia bound. The new statement is what nostalgia <em>wanted</em> to be for worlds with long, tangled memories.
+:::aside Why this generalizes the Still inequality
+If the signal happens to be Markovian, "what the future reveals" collapses to "what the next symbol reveals," and this new law reduces exactly to the Still nostalgia bound. The new statement is what nostalgia <em>wanted</em> to be for worlds with tangled memories.
 :::
 
-# [Entry 04 · A family of laws] How far into the future should you peek?
+# [Entry 04 · A family of relationships] How far into the future should you peek?
 
-Between "compare against the next tick" (2012) and "compare against the entire future" (cryptic) sits a whole family: judge the system's memory against a sliding <strong>window of the next <span class="mth">k</span> symbols</strong>. Every window width gives a valid heat bound. So which is best? Bigger windows are more forgiving — surely their bounds are tighter?
+Between "compare against the next temporal step" (Still bound) and "compare against the entire future" (the cryptic bound above) sits a whole family: judge the system's memory against a sliding <strong>window of the next <span class="mth">k</span> symbols</strong>. Every window width gives a valid heat bound. So which is best? Bigger windows are more forgiving, so maybe their bounds are tighter?
 
-<strong>No — and we prove it's the opposite.</strong> Summed over a whole trajectory, the bounds only get <em>weaker</em> as the window grows. The humble one-step 2012 bound is the tightest member of the entire family, always, for any world that doesn't listen back. The value of the family isn't a better number. It's the <em>shape</em> of the curve, which turns out to be a diagnostic instrument. Try it:
+<strong>Actually the opposite.</strong> Summed over a whole trajectory, the bounds only get <em>weaker</em> as the window grows. The humble one-step Still bound is the tightest member of the entire family, always, for any system that's not agentic. It's the <em>shape</em> of the curve, which turns out to be a diagnostic instrument. Try it:
 
 :::widget window
 :::
 
-Read the shapes like a doctor reads an EKG:
+Read the shapes as follows:
 
 <strong>The cliff tells you the world's memory span.</strong> The echo world repeats each symbol three ticks later; its profile plummets exactly at width 3 — the moment the window becomes long enough to catch the repeat, most of the "secret" stops being secret. Flatness onset reads off the world's memory order.
 
-<strong>A rising profile should be impossible.</strong> The monotone theorem says summed profiles can only fall — <em>if the world is autonomous</em>. So if you ever measure a rising one, you've caught the environment red-handed: it is reacting to the system. <strong>A feedback detector made of pure statistics</strong>, no thermometer required. (Hold that thought for Entry 07.)
+<strong>A rising profile should be impossible.</strong> The monotone theorem says summed profiles can only fall — <em>if the system never acts on the world</em>. So if you ever measure a rising one, you've caught the environment red-handed: it is reacting to the system (and your system needs to be agentic). It is a feedback detector of sorts, via statistics. (Hold that thought for Entry 07.)
 
 # [Entry 05 · The missing heat] Where's the other seventy percent?
 
 :::lede
-Here's the embarrassment mentioned earlier, now with numbers: across every regime we test, information bounds — old or new — account for only <strong>4–30%</strong> of the heat actually wasted. For a "law of physics," that's a lot of unexplained bill.
+Across every regime we test, information bounds — old or new — account for only <strong>4–30%</strong> of the heat actually wasted.
 :::
 
-Our answer reframes the whole complaint. The missing heat has nothing to do with the signal or the memory. It's a property of <strong>the hardware</strong>: how completely the system relaxes each step. A system that only slumps partway down each new valley leaves stored stress that dissipates later, and no amount of informational cleverness prices it — but <em>one single number</em> does. Each thermal bath gets a coefficient (the <em>Dobrushin coefficient</em> — roughly, "what fraction of the way to equilibrium does one step take you?"), and adding that one hardware constant to the ledger recovers <strong>74–100%</strong> of the bill.
+The missing heat due to bound laxness has nothing to do with the signal or the memory. It's, however, a property of system itself: how completely it relaxes each step. A system that only slumps partway down each new valley leaves stored stress that dissipates later, and no amount of informational cleverness prices it. Is there a quantity that can describe this internal dynamic? Yes! Each thermal bath gets a coefficient (the <em>[Dobrushin coefficient](https://www.researchgate.net/publication/265436392_A_generalization_of_Dobrushin_coefficient)</em> — roughly, "what fraction of the way to equilibrium does one step take you?"), and adding that one system constant to the ledger recovers <strong>74–100%</strong> of the bill.
 
 :::widget hybrid
 :::
 
-Notice the moral inversion. The standard critique was "information bounds are loose, hence weak." Our version: information terms were never <em>supposed</em> to price the kinetic cost — the missing dissipation belongs to the machine, not the message, and a single kernel constant settles it. At complete relaxation (<span class="mth">r = 1</span>), the hybrid bound isn't a bound at all: it's <em>exact</em>.
+This prices in kinetic cost, which does not appear in the Stills and other such bounds. The missing dissipation belongs to the behavior of the system itself. At complete relaxation (<span class="mth">r = 1</span>), the hybrid bound isn't a bound at all: it's exact!.
 
 # [Entry 06 · A field test] A heat meter for chaos
 
-Does the window profile actually measure anything real? We point the instrument at the hardest kind of world: <strong>deterministic chaos, watched through a blurry lens.</strong> Imagine a chaotic map (the "skew tent map" — stretch the interval, fold it back) that you observe with only finite precision, say the first few binary digits. Then compute the window profile <em>exactly</em>, no sampling.
+Can we apply this to any real system and get some thermodynamic insight? Does the window profile actually measure anything real? We point the instrument at the hardest kind of world: <strong>deterministic chaos, watched through a blurry lens.</strong> Imagine a chaotic map (the "skew tent map" — stretch the interval, fold it back) that you observe with only finite precision, say the first few binary digits. Then compute the window profile <em>exactly</em>, no sampling.
 
-Three clean signatures fall out:
+You have three regimes
 
 :::widget chaos
 :::
@@ -111,22 +111,22 @@ A calorimeter, plus this bookkeeping, becomes a <i>chaos meter</i>: the heat led
 :::
 
 :::aside A subtle correction to folklore
-You might expect that for <em>reversible</em> chaos (like the baker's map, which folds but never truly destroys), long enough windows would drive the profile to zero — the future should eventually reveal everything. We show this fails: future observations resolve the <em>stretching</em> direction of chaos but carry exponentially fading news about the <em>squeezing</em> direction. Watching only forward in time, some of the past stays cryptic forever. Closing the gap would need windows that look both ways — an open problem we leave flagged.
+You might expect that for <em>reversible</em> chaos (e.g. baker's map, which folds but never truly destroys), long enough windows would drive the profile to zero. That is, the future should eventually reveal everything. We show this is not true: future observations resolve the <em>stretching</em> direction of chaos but carry exponentially fading news about the <em>squeezing</em> direction. Watching only forward in time, some of the past stays cryptic forever. Closing the gap would need windows that look both ways, an open problem we leave flagged.
 :::
 
-# [Entry 07 · The loophole] Write it into the world
+# [Entry 07 · The loophole] What if the system is agentic?
 
 :::lede
-Everything so far assumed the world ignores you. But real agents — ants, engineers, language models with scratchpads — <em>act</em>. And the moment the environment starts responding to the system, a remarkable loophole opens in the heat bill.
+Everything so far assumed the world ignores the system. But real agents — ants, engineers, language models with scratchpads — <em>act</em>. And the moment the environment starts responding to the system, an interesting loophole appears inside the dissipation.
 :::
 
-An ant doesn't remember the route to food. It lays pheromone — it <strong>writes its memory into the world</strong>, and later reads it back off the trail. You do the same with sticky notes, filenames, and the arrangement of objects on your desk. Biologists call it <em>stigmergy</em>. We prove this trick has an exact thermodynamic value.
+An ant doesn't remember the route to food. It lays pheromones - it <strong>writes its memory into the world</strong> - and later reads it back off the trail. You do the same with sticky notes, filenames, and the arrangement of objects on your desk. In biology this is called <em>stigmergy</em>. We prove this trick has an exact thermodynamic value.
 
 :::figure "FIG 4" stigmergy
-<b>Stigmergy, priced.</b> The discount's exact currency is <b>oracular information</b>: what the agent's state tells about the world's <em>future</em> beyond what the current observation already shows. A purely passive observer has zero of it (its state is just a digest of the past). An agent that stamps its memory into the world has plenty — and each nat of it is worth one nat off the cryptic charge.
+<b>Stigmergy, priced.</b> The discount's exact currency is <b>oracular information</b>: what the agent's state tells about the world's <em>future</em> beyond what the current observation already shows. A purely passive observer has zero of it (its state is just a digest of the past). An agent that stamps its memory into the world has plenty. Each nat of it is worth one nat off the cryptic charge.
 :::
 
-With feedback switched on, the residual acquires a per-step penalty, and we prove two crucial things about it: the penalty <strong>never flips sign</strong> (verified against 12,000 adversarially optimized models trying to break it — minimum found: exactly zero), and it is <em>exactly</em> the oracular information minus a harmless defect. Dropping the defect gives our headline inequality, valid at any relaxation speed:
+With feedback switched on, the residual acquires a per-step penalty, and we prove two things about it: the penalty <strong>never flips sign</strong> (verified against 12,000 adversarially optimized models trying to break it — minimum found: exactly zero), and it is <em>exactly</em> the oracular information minus a harmless defect. Dropping the defect gives our headline inequality, valid at any relaxation speed:
 
 :::ledger Ledger · the master account | Corollary 6
 debit | Hidden (cryptic) state information | secrets held internally, summed over time | + DEBIT
@@ -136,26 +136,26 @@ total | ≤ Dissipated work | | THE LAW
 :::
 
 :::pull
-An agent pays for memory by dissipating it — <i>or by writing it into the world's future.</i>
+An agent pays for memory either by dissipating it <i>or by writing it into the world's future.</i>
 :::
 
-And when the credits exceed the debits, the bound goes <em>negative</em>: the system can extract net work, running on the order it previously stamped into its surroundings. Our tables realize this regime explicitly. Watch it happen:
+When the credits exceed the debits in the heat bill, the bound goes <em>negative</em>!: the system can extract net work, running on the order it previously stamped into its surroundings. Our tables realize this regime explicitly. Watch it happen:
 
 :::widget feedback
 :::
 
 :::aside A trap we defuse
-A tempting shortcut — swap the exact penalty for a familiar quantity called backward transfer entropy — turns out to produce an <em>invalid</em> "law" whenever relaxation is incomplete. We exhibit explicit counterexamples where the fake bound exceeds the true dissipation, then show the correct oracular version quietly becomes the shortcut in the complete-relaxation limit. The moral: in this subject, plausible substitutions need proofs.
+A tempting shortcut, swap the exact penalty for a familiar quantity called backward transfer entropy, turns out to produce an <em>invalid</em> "law" whenever relaxation is incomplete. We exhibit explicit counterexamples where the fake bound exceeds the true dissipation, then show the correct oracular version quietly becomes the shortcut in the complete-relaxation limit.
 :::
 
 # [Entry 08 · The mirror] One ledger, two readings
 
-There has long been a <em>second</em> tradition of information thermodynamics, descending from Maxwell's demon: information as a <strong>resource</strong>, where a feedback controller uses what it knows to extract work. It has its own second law, written in a quantity called <em>directed information</em>. Two literatures, two laws — prediction costs versus feedback profits.
+Consider Maxwell's demon: here information is a <strong>resource</strong>, where a feedback controller uses what it knows to extract work. It has its own second law, written in a quantity sometimes called <em>[directed information](https://pmc.ncbi.nlm.nih.gov/articles/PMC5104982/)</em>.
 
-Our final structural result: <strong>they are the same identity.</strong> Theorem 1's equation contains a free choice — condition the bookkeeping on the signal's <em>future</em>, or on its <em>past</em>. Future-facing gives "prediction pays" (the cryptic law). Past-facing gives "action pays back" — and reduces, exactly, to the classic directed-information second law. The two split a single conserved total of information between system and world.
+We show that directed information and our oracle information are sort of the same thing. Theorem 1's equation contains a free choice: condition the bookkeeping on the signal's <em>future</em>, or on its <em>past</em>. Future-facing gives "prediction pays" (the cryptic part of the identity). Past-facing gives "action pays back", and turns out it reduces, exactly, to the classic directed-information. The two split a single conserved total of information between system and world.
 
 :::figure "FIG 5" duality plain
-<b>Two σ-algebra choices in one decomposition.</b> "Memory as liability" and "information as resource" turn out to be the same accounting, read left-to-right versus right-to-left, splitting one conserved total (the Massey–Kim conservation law — verified in our models to machine precision).
+<b>Two vantage points, one relationship.</b> "Memory as liability" and "information as resource" turn out to be the same accounting, read left-to-right versus right-to-left, splitting one conserved total (the Massey–Kim conservation law, verified in our models to machine precision).
 :::
 
 # [Entry 09 · Due diligence] Trust, but enumerate
@@ -166,26 +166,22 @@ We also tuck in a practitioner's warning: if you try to <em>estimate</em> these 
 
 # [Entry 10 · Beyond physics] Why you might care
 
-Honestly: not because of your GPU bill. Real chips run astronomically above these fundamental floors. The interesting transfers are structural — strip the temperature off, and the identity is a statement about <em>representation</em>:
+Unfortunately this does not affect your GPU bill. Real chips run astronomically above these fundamental floors. But it does yield some intuitions:
 
-### For machine learning
+### ML systems can design for cryptic or oracle information
 
-The right "memory penalty" for a recurrent state isn't a generic bottleneck that squeezes useful and useless bits alike — it's the <strong>cryptic</strong> part only: penalize what the state holds that the future context wouldn't reveal anyway. For agents, the regularizer refines further to <em>cryptic minus oracular</em>: writing state into the environment (a scratchpad, a file) is a legitimate 1:1 substitute for internal retention, and the theorem guarantees the credit can never overdraw.
-
-### For systems engineers
-
-The ledger reads like a cache-eviction policy: an entry is safe to evict if it's non-cryptic given what you're keeping plus what's about to arrive — or if you've exported it to a persistent substrate the future computation will read. The physics and the systems folklore agree, now with an exact exchange rate.
+The right "memory penalty" for a neural architecture having a recurrent state isn't a generic bottleneck that squeezes useful and useless bits alike, but rather the <strong>cryptic</strong> part only. That is, penalize what the state holds that the future context would never repeat. For agents, the regularizer refines further to <em>cryptic minus oracular</em>: writing state into the environment (a scratchpad, a file) is a legitimate 1:1 substitute for internal retention, and the theorem guarantees the credit can never overdraw.
 
 ### For the small and the hot
 
-Where temperature is literal — molecular machines, analog and stochastic computing — the feedback bound is a design law valid at any speed, and the one-number hardware correction prices the rest of the bill.
+In molecular machines, e.g. analog and stochastic computing, the feedback bound is a design law valid at any speed, and the one-number hardware correction prices the rest of the bill.
 
 :::ledger Closing the books | the account in one line
-debit | Crypticity — secrets the world never repeats | | DEBIT
+debit | Crypticity — informtion the world never repeats | | DEBIT
 debit | Mismatch cost — hardware relaxing off-target | | DEBIT
 credit | Feedback discount — memory exported to the future | | CREDIT
 zero | Boundary terms | | ≥ 0
-total | = Dissipation. Every entry proven, every sign certified. | | ■
+total | = Dissipation.| | ■
 :::
 
-The 2012 slogan was <em>a memory that doesn't predict must burn.</em> The 2026 amendment is gentler and stranger: <strong>only secrets burn — and a secret told to the world stops being a secret.</strong>
+The original Still bound stated that <em>a memory that doesn't predict must burn.</em> The amendment here is: <strong>only the unpredictable burns, but you can cool it off by acting on the world</strong>

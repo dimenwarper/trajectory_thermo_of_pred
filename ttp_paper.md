@@ -1,4 +1,4 @@
-# A Trajectory-Level Identity for the Thermodynamics of Prediction, With and Without Back-Action
+# Trajectory-Level and Agent Back-Action Identities for the Thermodynamics of Prediction
 
 **Author:** [author list]
 **Date:** August 2026
