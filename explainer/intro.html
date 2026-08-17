@@ -311,7 +311,7 @@ footer .fin{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-tra
   <div class="col">
     <div class="eyebrow"><span class="n">Entry 02</span> The 2012 rule</div>
     <h2>Useless memory costs heat</h2>
-    <p>In a landmark <a href="https://arxiv.org/abs/1203.3271">paper</a> by Still, Sivak, Bell and Crooks proved that if a system is physically pushed around by an external signal, its internal state <span class="mth">S</span> inevitably carries information about the signal. They split that information in two:</p>
+    <p>A landmark <a href="https://arxiv.org/abs/1203.3271">paper</a> by Still, Sivak, Bell and Crooks proved that if a system is physically pushed around by an external signal, its internal state <span class="mth">S</span> inevitably carries information about the signal. They split that information in two:</p>
     <p style="margin-bottom:.6em"><strong style="color:var(--free)">The predictive part</strong>: bits about the current signal that are still useful for anticipating the <em>next</em> one.</p>
 <p><strong style="color:var(--heat)">The nostalgic part</strong>: bits about the current signal that will be useless one tick from now. Memory for memory's sake.</p>
     <figure>
@@ -342,7 +342,7 @@ footer .fin{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-tra
       </svg>
   <figcaption><b>Nostalgia = memory − predictive power.</b> The Still bound: dissipated work per step is at least <span class="mth">k<tspan style="font-size:.8em">B</tspan>T</span> × nostalgia. Clinging to the past, if the past won't help you with the future, is physically expensive. A perfect predictor, i.e. remembering only what forecasts, can in principle run cool.</figcaption>
 </figure>
-    <p>That result launched a small field. But it also left two itches that we set out to scratch. <strong>First:</strong> "useful for the next tick of the clock" is a strangely short horizon. What about signals whose patterns only make sense over long stretches? Second, when you actually compute the bound, it typically explains only a small sliver of the heat a real system wastes. Where's the rest?</p>
+    <p>That result launched a small field. But it also left some itches that we set out to scratch. <strong>First:</strong> "useful for the next tick of the clock" is a short horizon. What about signals whose patterns only make sense over long stretches? <strong>Second</strong>, when you actually compute the bound, it typically explains only a small sliver of the heat a real system wastes. Where's the rest? <strong>Third</strong>, what if the system acts back on the environment, what happens then?</p>
   </div>
 </section>
 
@@ -351,7 +351,7 @@ footer .fin{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-tra
     <div class="eyebrow"><span class="n">Entry 03</span> The exact identity</div>
     <h2>The cost of information what never repeats</h2>
     <p class="lede">Not all correlations in the world are predictive of its future. The system pays a cost for the memories it keeps that are never repeated.</p>
-    <p>Consider what the system's state knows about the present signal. Some of that information will be repeated, and the future of the signal will reveal it whether or not the system bothered to remember. And some of it is <em>gone</em>: the signal's entire future, watched to the end of time, would never disclose it again. We call that second kind <span class="term hot">cryptic information</span> what the state stores about the present that the future never brings up abain.</p>
+    <p>Consider what the system's state knows about the present signal. Some of that information will be repeated, and the future of the signal will reveal it whether or not the system bothered to remember. And some of it is <em>gone</em>: the signal's entire future, watched to the end of time, would never disclose it again. We call that second kind <span class="term hot">cryptic information</span> what the state stores about the present that the future never brings up again.</p>
     <figure>
   <span class="figtag">FIG 3</span>
   <svg viewBox="0 0 760 300" role="img" aria-label="Cryptic information: what the state knows about now that the future never reveals">
@@ -449,7 +449,7 @@ footer .fin{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-tra
     <div class="eyebrow"><span class="n">Entry 06</span> The loophole</div>
     <h2>What if the system is agentic?</h2>
     <p class="lede">Everything so far assumed the world ignores the system. But real agents — ants, engineers, language models with scratchpads — <em>act</em>. And the moment the environment starts responding to the system, an interesting loophole appears inside the dissipation.</p>
-    <p>An ant doesn't remember the route to food. It lays pheromones - it <strong>writes its memory into the world</strong> - and later reads it back off the trail. You do the same with sticky notes, filenames, and the arrangement of objects on your desk. In biology this is called <em>stigmergy</em>. We prove this trick has an exact thermodynamic value.</p>
+    <p>An ant doesn't remember the route to food. It lays pheromones - it <strong>writes its memory into the world</strong> - and later reads it back off the trail. You do the same with sticky notes, filenames, and the arrangement of objects on your desk. In biology this is called <em>stigmergy</em>. Turns out this trick has an exact thermodynamic value.</p>
     <figure>
   <span class="figtag">FIG 4</span>
   <svg viewBox="0 0 760 290" role="img" aria-label="Two ways to pay for memory: dissipate it, or export it to the world">

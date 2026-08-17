@@ -28,7 +28,7 @@ How little heat can a system that lives in a changing world <i>possibly</i> wast
 
 # [Entry 02 · The 2012 rule] Useless memory costs heat
 
-In a landmark [paper](https://arxiv.org/abs/1203.3271) by Still, Sivak, Bell and Crooks proved that if a system is physically pushed around by an external signal, its internal state <span class="mth">S</span> inevitably carries information about the signal. They split that information in two:
+A landmark [paper](https://arxiv.org/abs/1203.3271) by Still, Sivak, Bell and Crooks proved that if a system is physically pushed around by an external signal, its internal state <span class="mth">S</span> inevitably carries information about the signal. They split that information in two:
 
 :::raw
 <p style="margin-bottom:.6em"><strong style="color:var(--free)">The predictive part</strong>: bits about the current signal that are still useful for anticipating the <em>next</em> one.</p>
@@ -39,7 +39,7 @@ In a landmark [paper](https://arxiv.org/abs/1203.3271) by Still, Sivak, Bell and
 <b>Nostalgia = memory − predictive power.</b> The Still bound: dissipated work per step is at least <span class="mth">k<tspan style="font-size:.8em">B</tspan>T</span> × nostalgia. Clinging to the past, if the past won't help you with the future, is physically expensive. A perfect predictor, i.e. remembering only what forecasts, can in principle run cool.
 :::
 
-That result launched a small field. But it also left two itches that we set out to scratch. <strong>First:</strong> "useful for the next tick of the clock" is a strangely short horizon. What about signals whose patterns only make sense over long stretches? Second, when you actually compute the bound, it typically explains only a small sliver of the heat a real system wastes. Where's the rest?
+That result launched a small field. But it also left some itches that we set out to scratch. <strong>First:</strong> "useful for the next tick of the clock" is a short horizon. What about signals whose patterns only make sense over long stretches? <strong>Second</strong>, when you actually compute the bound, it typically explains only a small sliver of the heat a real system wastes. Where's the rest? <strong>Third</strong>, what if the system acts back on the environment, what happens then?
 
 # [Entry 03 · The exact identity] The cost of information what never repeats
 
@@ -47,7 +47,7 @@ That result launched a small field. But it also left two itches that we set out 
 Not all correlations in the world are predictive of its future. The system pays a cost for the memories it keeps that are never repeated.
 :::
 
-Consider what the system's state knows about the present signal. Some of that information will be repeated, and the future of the signal will reveal it whether or not the system bothered to remember. And some of it is <em>gone</em>: the signal's entire future, watched to the end of time, would never disclose it again. We call that second kind <span class="term hot">cryptic information</span> what the state stores about the present that the future never brings up abain.
+Consider what the system's state knows about the present signal. Some of that information will be repeated, and the future of the signal will reveal it whether or not the system bothered to remember. And some of it is <em>gone</em>: the signal's entire future, watched to the end of time, would never disclose it again. We call that second kind <span class="term hot">cryptic information</span> what the state stores about the present that the future never brings up again.
 
 :::figure "FIG 3" cryptic
 <b>The green part is thermodynamically free</b> — whether or not the system ever "uses" it — because the world's own future is a backup copy. Only the <b>red, cryptic part</b> shows up as heat. In symbols: cryptic information is <span class="mth">I[S<tspan style="font-size:.75em">t</tspan> ; x<tspan style="font-size:.75em">t</tspan> | future]</span>, the state's knowledge of now <em>given</em> the whole future.
@@ -101,7 +101,7 @@ This prices in kinetic cost, which does not appear in the Stills and other such 
 Everything so far assumed the world ignores the system. But real agents — ants, engineers, language models with scratchpads — <em>act</em>. And the moment the environment starts responding to the system, an interesting loophole appears inside the dissipation.
 :::
 
-An ant doesn't remember the route to food. It lays pheromones - it <strong>writes its memory into the world</strong> - and later reads it back off the trail. You do the same with sticky notes, filenames, and the arrangement of objects on your desk. In biology this is called <em>stigmergy</em>. We prove this trick has an exact thermodynamic value.
+An ant doesn't remember the route to food. It lays pheromones - it <strong>writes its memory into the world</strong> - and later reads it back off the trail. You do the same with sticky notes, filenames, and the arrangement of objects on your desk. In biology this is called <em>stigmergy</em>. Turns out this trick has an exact thermodynamic value.
 
 :::figure "FIG 4" stigmergy
 <b>Stigmergy, priced.</b> The discount's exact currency is <b>oracular information</b>: what the agent's state tells about the world's <em>future</em> beyond what the current observation already shows. A purely passive observer has zero of it (its state is just a digest of the past). An agent that stamps its memory into the world has plenty. Each nat of it is worth one nat off the cryptic charge.
